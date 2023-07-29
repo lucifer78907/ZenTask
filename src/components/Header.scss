@@ -10,8 +10,8 @@
   width: 12rem;
   height: 6rem;
   border-radius: 40px;
-  background-color: #fff;
-  box-shadow: 0 2rem 4rem rgba(23, 23, 23, 0.15);
+  background-color: var(--color-bg);
+  box-shadow: var(--box-shadow-light);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
