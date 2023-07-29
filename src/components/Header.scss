@@ -10,5 +10,16 @@
   width: 12rem;
   height: 6rem;
   border-radius: 40px;
-  background-color: red;
+  background-color: #fff;
+  box-shadow: 0 2rem 4rem rgba(23, 23, 23, 0.15);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  & div {
+    background-color: var(--color-secondary-500);
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }

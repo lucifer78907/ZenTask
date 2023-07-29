@@ -1,0 +1,20 @@
+.form {
+  &__label {
+    align-self: flex-start;
+    font-size: clamp(2rem, 1rem + 1vw, 2.4rem);
+    font-weight: 500;
+    color: var(--color-grey-800);
+  }
+
+  &__input {
+    flex: 0 1;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(59, 131, 246, 0.226);
+    padding: 2rem;
+    border-radius: 2rem;
+    font-family: inherit;
+    font-weight: 400;
+    color: var(--color-grey-400);
+    font-size: clamp(1.7rem, 1rem + 1vw, 2.4rem);
+  }
+}
