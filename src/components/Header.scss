@@ -1,0 +1,14 @@
+.header {
+  padding: 4rem 6rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.theme__toggle {
+  width: 12rem;
+  height: 6rem;
+  border-radius: 40px;
+  background-color: red;
+}
