@@ -18,9 +18,9 @@ const Header = () => {
       <img src={appLogo} alt="Zentask logo" className="app__icon" />
       <aside>
         <p className="theme__toggle">
-          <div onClick={handleThemeChange}>
+          <span onClick={handleThemeChange}>
             <BsSunFill size="2.4rem" color="#fff" />
-          </div>
+          </span>
           <BsMoonFill size="2.4rem" />
         </p>
       </aside>

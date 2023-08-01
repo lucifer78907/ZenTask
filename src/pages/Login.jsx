@@ -6,8 +6,8 @@ const Login = () => {
   return (
     <section className="login">
       <Header />
-      <h1 className="heading__primary">Supercharge Your Productivity</h1>
-      <Form />
+      <h1 className="heading__primary">Your pending tasks awaits!</h1>
+      <Form isLogin={true} />
     </section>
   );
 };

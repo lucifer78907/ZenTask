@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
+import SignUp from "./pages/SignUp";
 
-// #TODO - Implement Light Dark Mode
 // #TODO - Refactor the code
 // #TODO - Add a backend for signUp login pages
 
@@ -18,6 +18,10 @@ const App = () => {
     {
       index: true,
       element: <Home />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
     },
     {
       path: "/login",
