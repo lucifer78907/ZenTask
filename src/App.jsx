@@ -9,8 +9,10 @@ import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import SignUp from "./pages/SignUp";
 
-// #TODO - Refactor the code
+// #TODO - Add client side validation
+// #TODO - Add microinteractions and animations
 // #TODO - Add a backend for signUp login pages
+// #TODO - Add server side validation
 
 const App = () => {
   const { themeColor } = useContext(uiContext);
@@ -30,8 +32,6 @@ const App = () => {
   ]);
 
   useEffect(() => {
-    console.log("UseEffect", themeColor);
-
     if (themeColor === "dark") {
       document.body.classList.remove("light");
       document.body.classList.add("dark");

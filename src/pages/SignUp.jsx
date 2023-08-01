@@ -1,12 +1,11 @@
-import "./Login.scss";
 import Header from "../components/Header";
 import Form from "../components/Form";
 
 const SignUp = () => {
   return (
-    <section className="login">
+    <section className="signup" style={{ textAlign: "center" }}>
       <Header />
-      <h1 className="heading__primary">Supercharge cour productivity</h1>
+      <h1 className="heading__primary">Supercharge your productivity</h1>
       <Form />
     </section>
   );

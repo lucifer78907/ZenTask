@@ -53,5 +53,9 @@
       var(--color-primary-500) 60%,
       var(--color-secondary-500)
     );
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
