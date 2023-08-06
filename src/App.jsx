@@ -8,10 +8,10 @@ import Login from "./pages/Login";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import SignUp from "./pages/SignUp";
+import { action as signUpAction } from "./components/Form";
 
-// #TODO - Add client side validation
-// #TODO - Add microinteractions and animations
 // #TODO - Add a backend for signUp login pages
+// #TODO - Add microinteractions and animations
 // #TODO - Add server side validation
 
 const App = () => {
@@ -24,6 +24,7 @@ const App = () => {
     {
       path: "/signup",
       element: <SignUp />,
+      action: signUpAction,
     },
     {
       path: "/login",

@@ -11,6 +11,16 @@
     border-radius: 3.6rem;
     position: relative;
     z-index: 1000;
+
+    @media only screen and (width<1600px) {
+      width: 50%;
+    }
+    @media only screen and (width<1250px) {
+      width: 60%;
+    }
+    @media only screen and (width<650px) {
+      width: 90%;
+    }
   }
 
   &__image {

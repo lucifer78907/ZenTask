@@ -59,7 +59,11 @@ const Input = (props) => {
         </span>
       </label>
       <input
-        className="form__input"
+        className={`form__input ${
+          inputFieldText.isValid !== null && !inputFieldText.isValid
+            ? "form__input--invalid"
+            : ""
+        }`}
         id={props.id}
         type={props.type}
         name={props.name}
