@@ -70,7 +70,6 @@ const Input = (props) => {
         placeholder={props.defaultValue}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
-        required
       />
     </div>
   );

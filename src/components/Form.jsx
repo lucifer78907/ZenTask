@@ -18,12 +18,25 @@ const Form = ({ isLogin }) => {
         position: toast.POSITION.TOP_RIGHT,
         onClose: () => navigate("/"),
       });
+    } else if (fetcher?.data?.status === 409) {
+      //duplicate record
+      toast.error(`${fetcher.data.message}! Login instead`, {
+        position: toast.POSITION.TOP_RIGHT,
+        onClose: () => navigate("/login"),
+      });
+    } else if (fetcher?.data?.status === 422) {
+      // server validation error
+      fetcher.data?.data.map((error) => {
+        toast.warning(error.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
     }
-  });
+  }, [fetcher?.data]);
 
   return (
     <article className="form__container">
-      <ToastContainer />
+      <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
       <h2 className="heading__secondary">{isLogin ? "Login" : "Signup"}</h2>
       <fetcher.Form method="POST" action="/signup" className="form">
         <Input
@@ -75,6 +88,8 @@ export const action = async ({ request }) => {
     },
     body: JSON.stringify(formData),
   });
+
+  if (response.status === 409 || response.status === 422) return response;
 
   if (!response.ok) throw json({ message: "Could not create a user" });
 
