@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import SignUp from "./pages/SignUp";
-import { action as signUpAction } from "./components/Form";
+import { signUpAction, loginAction } from "./components/Form";
 
 // #TODO - Add a backend for signUp login pages
 // #TODO - Add microinteractions and animations
@@ -29,6 +29,7 @@ const App = () => {
     {
       path: "/login",
       element: <Login />,
+      action: loginAction,
     },
   ]);
 
