@@ -1,0 +1,42 @@
+.homecards__container {
+  padding: 10rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, min-content));
+  justify-content: center;
+  justify-items: center;
+  column-gap: 12rem;
+  row-gap: 6rem;
+}
+
+.homecard {
+  width: 30rem;
+  height: 30rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(25, 25, 25, 0.15);
+  border-radius: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.8rem 1.8rem 3rem 3.2rem;
+  &__img {
+    width: 10rem;
+    height: 10rem;
+    align-self: flex-end;
+  }
+
+  &__para {
+    font-size: clamp(2.4rem, 1rem + 1vw, 3.2rem);
+    font-weight: 700;
+    text-align: left;
+
+    &[data-color="blue"] {
+      color: #3b82f6;
+    }
+    &[data-color="red"] {
+      color: #ef4444;
+    }
+    &[data-color="green"] {
+      color: #10b981;
+    }
+  }
+}

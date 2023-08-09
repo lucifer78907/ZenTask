@@ -1,0 +1,21 @@
+.homepage {
+  text-align: center;
+  padding: 2rem;
+
+  &__para {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+
+    & span {
+      display: inline-block;
+      font-size: clamp(2.4rem, 1rem + 1vw, 3.2rem);
+      font-weight: 500;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+  }
+}

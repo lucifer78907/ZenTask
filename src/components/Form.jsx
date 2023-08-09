@@ -16,14 +16,15 @@ const Form = ({ isLogin }) => {
     if (fetcher?.data?.status === 201) {
       toast.success("User account created", {
         position: toast.POSITION.TOP_RIGHT,
-        onClose: () => navigate("/"),
+        onClose: () => navigate("/login"),
       });
     } else if (fetcher?.data?.status === 200) {
       toast.success("Successfully logged in", {
         position: toast.POSITION.TOP_RIGHT,
-        onClose: () => navigate("/"),
+        onClose: () => navigate(`/homepage/${fetcher.data.userId}`),
       });
     } else if (fetcher?.data?.status === 401) {
+      // wrong credentials
       toast.error("Wrong Password!", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -40,7 +41,7 @@ const Form = ({ isLogin }) => {
         onClose: () => navigate("/login"),
       });
     } else if (fetcher?.data?.status === 422) {
-      // server validation error
+      // server validation errors
       fetcher.data?.data.map((error) => {
         toast.warning(error.msg, {
           position: toast.POSITION.TOP_RIGHT,
@@ -106,8 +107,6 @@ export const loginAction = async ({ request }) => {
     },
     body: JSON.stringify(formData),
   });
-
-  console.log(response);
 
   if (
     response.status === 404 ||

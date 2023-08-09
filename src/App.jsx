@@ -3,33 +3,41 @@ import "./sass/_theme.scss";
 import "./sass/_base.scss";
 import "./sass/_typography.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+import UserHomePage from "./pages/UserHomePage";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
-import SignUp from "./pages/SignUp";
 import { signUpAction, loginAction } from "./components/Form";
 
-// #TODO - Add a backend for signUp login pages
+// #TODO - Create user welcome page with TODO's,Future tasks,Projects
+// #TODO - Create TODO page
+// #TODO - Add backend for TODO's
 // #TODO - Add microinteractions and animations
-// #TODO - Add server side validation
 
 const App = () => {
   const { themeColor } = useContext(uiContext);
   const router = createBrowserRouter([
     {
-      index: true,
-      element: <Home />,
-    },
-    {
-      path: "/signup",
-      element: <SignUp />,
-      action: signUpAction,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-      action: loginAction,
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        {
+          path: "signup",
+          element: <SignUp />,
+          action: signUpAction,
+        },
+        {
+          path: "login",
+          element: <Login />,
+          action: loginAction,
+        },
+        {
+          path: "homepage/:userId",
+          element: <UserHomePage />,
+        },
+      ],
     },
   ]);
 
