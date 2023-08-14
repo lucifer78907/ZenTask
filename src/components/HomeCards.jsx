@@ -1,29 +1,29 @@
-import ticImg from "../assets/3d/TodoIcons/tick.png";
-import arrowImg from "../assets/3d/TodoIcons/arrow.png";
-import cubeImg from "../assets/3d/TodoIcons/cube.png";
+import HomeCard from "./HomeCard";
+import { HomeCardData as cards } from "../data/HomeCardsData";
 import "./HomeCards.scss";
+import uiContext from "../context/ui-context";
+import { useContext } from "react";
 
 const HomeCards = () => {
+  const { themeColor } = useContext(uiContext);
+
   return (
     <article className="homecards__container">
-      <article className="homecard">
-        <img src={ticImg} alt="Homecard type" className="homecard__img" />
-        <p className="homecard__para" data-color="blue">
-          Daily Todo's
-        </p>
-      </article>
-      <article className="homecard">
-        <img src={arrowImg} alt="Homecard type" className="homecard__img" />
-        <p className="homecard__para" data-color="red">
-          Future homecard's
-        </p>
-      </article>
-      <article className="homecard">
-        <img src={cubeImg} alt="Homecard type" className="homecard__img" />
-        <p className="homecard__para" data-color="green">
-          Projects
-        </p>
-      </article>
+      {cards.map((card) => {
+        return (
+          <HomeCard
+            key={card.id}
+            title={card.title}
+            img={card[`${themeColor === "light" ? "img" : "darkImg"}`]}
+            bgColor={
+              card[`${themeColor === "light" ? "backgroundColor" : "color"}`]
+            }
+            color={
+              card[`${themeColor === "light" ? "color" : "backgroundColor"}`]
+            }
+          />
+        );
+      })}
     </article>
   );
 };

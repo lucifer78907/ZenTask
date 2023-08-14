@@ -1,0 +1,23 @@
+.homecard {
+  width: 30rem;
+  height: 30rem;
+  background-color: var(--bg-color);
+  box-shadow: 0 0.5rem 1rem rgba(25, 25, 25, 0.15);
+  border-radius: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.8rem 1.8rem 3rem 3.2rem;
+  &__img {
+    width: 10rem;
+    height: 10rem;
+    align-self: flex-end;
+  }
+
+  &__para {
+    font-size: clamp(2.4rem, 1rem + 1vw, 3.2rem);
+    font-weight: 700;
+    text-align: left;
+    color: var(--color);
+  }
+}
