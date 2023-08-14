@@ -35,6 +35,7 @@ const HomeCards = () => {
                     `${themeColor === "light" ? "color" : "backgroundColor"}`
                   ]
                 }
+                page={card.page}
               />
             );
           })}

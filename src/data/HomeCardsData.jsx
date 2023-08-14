@@ -17,6 +17,7 @@ export const HomeCardData = [
     darkImg: ticImgDark,
     backgroundColor: "#fff",
     color: "#3B82F6",
+    page: "todos",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ export const HomeCardData = [
     darkImg: arrowImgDark,
     backgroundColor: "#fff",
     color: "#EF4444",
+    page: "future-todos",
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const HomeCardData = [
     darkImg: cubeImgDark,
     backgroundColor: "#fff",
     color: "#10B981",
+    page: "projects",
   },
   {
     id: 4,
@@ -41,6 +44,7 @@ export const HomeCardData = [
     darkImg: analyticsImgDark,
     backgroundColor: "#fff",
     color: "#A855F7",
+    page: "analytics",
   },
   {
     id: 5,
@@ -49,5 +53,6 @@ export const HomeCardData = [
     darkImg: userImgDark,
     backgroundColor: "#fff",
     color: "#F97316",
+    page: "profile",
   },
 ];

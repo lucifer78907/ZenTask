@@ -3,15 +3,15 @@ import "./sass/_theme.scss";
 import "./sass/_base.scss";
 import "./sass/_typography.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import UserHomePage from "./pages/UserHomePage";
+import UserHomePage, { loader as userLoader } from "./pages/UserHomePage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
+import DailyTodo from "./pages/DailyTodo";
 
-// #TODO - Create user welcome page with TODO's,Future tasks,Projects
 // #TODO - Create TODO page
 // #TODO - Add backend for TODO's
 // #TODO - Add microinteractions and animations
@@ -34,8 +34,19 @@ const App = () => {
           action: loginAction,
         },
         {
-          path: "homepage/:userId",
-          element: <UserHomePage />,
+          path: "homepage",
+          children: [
+            {
+              index: true,
+              path: ":userId",
+              element: <UserHomePage />,
+              loader: userLoader,
+            },
+            {
+              path: ":userId/todos",
+              element: <DailyTodo />,
+            },
+          ],
         },
       ],
     },

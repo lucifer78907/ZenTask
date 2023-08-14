@@ -28,6 +28,8 @@
   font-size: clamp(1.7rem, 1rem + 0.5vw, 2rem);
   color: var(--color-grey-500);
 
+  line-height: 1.5;
+
   & span {
     color: var(--color-grey-400);
   }
