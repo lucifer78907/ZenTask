@@ -7,3 +7,28 @@
   column-gap: 12rem;
   row-gap: 8rem;
 }
+
+.homepage {
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6rem;
+
+    &--para {
+      cursor: pointer;
+      font-size: clamp(2.4rem, 1rem + 1vw, 3.2rem);
+      font-weight: 700;
+      color: var(--color-primary-500);
+    }
+  }
+}
+
+.quote {
+  font-size: clamp(1.7rem, 1rem + 0.5vw, 2rem);
+  color: var(--color-grey-500);
+
+  & span {
+    color: var(--color-grey-400);
+  }
+}
