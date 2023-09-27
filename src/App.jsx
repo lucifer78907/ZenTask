@@ -11,6 +11,7 @@ import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
 import DailyTodo from "./pages/DailyTodo";
+import IndexPage from "./pages/IndexPage";
 
 // #TODO - Create TODO page
 // #TODO - Add backend for TODO's
@@ -23,6 +24,10 @@ const App = () => {
       path: "/",
       element: <RootLayout />,
       children: [
+        {
+          index:true,
+          element:<IndexPage/>
+        },
         {
           path: "signup",
           element: <SignUp />,

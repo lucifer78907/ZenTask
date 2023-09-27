@@ -12,6 +12,7 @@
 
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
 }
 
 body {
@@ -21,5 +22,4 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   box-sizing: border-box;
-  transition: all 300ms;
 }
