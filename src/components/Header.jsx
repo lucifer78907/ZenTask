@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useLayoutEffect } from "react";
 import uiContext from "../context/ui-context";
 import appLogo from "../assets/appIcon.svg";
 import "./Header.scss";
@@ -19,9 +19,9 @@ const Header = () => {
       <aside>
         <p className="theme__toggle">
           <span onClick={handleThemeChange}>
-            <BsSunFill size="2.4rem" color="#fff" />
+            {themeColor==='light' && <BsSunFill size="2.4rem" color="#fff" />}
+            {themeColor==='dark' && <BsMoonFill size="2.4rem" color="#fff" />}
           </span>
-          <BsMoonFill size="2.4rem" />
         </p>
       </aside>
     </header>

@@ -44,6 +44,7 @@
         letter-spacing: 2px;
         position: relative;
         z-index: 1;
+        color: var(--color-grey-300);
 
         &--img{
             position: absolute;
@@ -61,8 +62,7 @@
                 color: var(--color-secondary-500);
             }
             &--3{
-                color: var(--color-grey-200);
-                text-shadow: 0.7rem  0.7rem var(--color-grey-600);
+                color: #a855f7 ;
             }
         }
 
