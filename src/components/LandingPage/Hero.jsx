@@ -10,9 +10,20 @@ import { useRef } from 'react'
 const Hero = () => {
     const heroHeadingRef = useRef();
     const heroRef = useRef();
+    const introRef = useRef();
 
 useLayoutEffect(() => {
-    const mainTl = gsap.timeline();
+    const mainTl = gsap.timeline({delay:1});
+    let ani;
+
+    gsap.context(() => {
+        mainTl.set('.intro__heading',{autoAlpha:1,duration:2})
+        mainTl.from('.intro__heading div',{y:80,opacity:0,stagger:1})
+        .to('.intro__heading div',{y:-80,opacity:0,stagger:1},1)
+    },introRef)
+
+    mainTl.to('.intro',{height:0})
+
     
     gsap.context(() => {
         mainTl.from('.hero__heading',{opacity:0,yPercent:100,scale:0.8})
@@ -26,20 +37,29 @@ useLayoutEffect(() => {
     gsap.context(() => {
         const sections = ['.hero__heading--span--1','.hero__heading--span--2','.hero__heading--span--3']
         const colors = ['#10b981','#3b82f6','#a855f7']
-        let ani = gsap.timeline({paused:true});
+        ani = gsap.timeline();
         ani.to(sections,{color:'#e5e5e5',textShadow:'0.7rem 0.7rem #525252' ,stagger:1}).
         to(sections,{color:gsap.utils.wrap(colors),textShadow:'0.1rem 0.1rem #fff',stagger:1},1);
 
-        setTimeout(() => {
-            ani.play();
-        },1000)
+        
         // DONT USE var in gsap
     },heroHeadingRef)
+
+    mainTl.add(ani);
+
 
     
 },[])
 
 return <main className="index">
+            <section className="intro" ref={introRef}>
+                <h1 className='intro__heading'>
+                    <div>Tired?</div>
+                    <div>Lack of Productivity?</div>
+                    <div>Dont Worry :&#41;</div>
+                    <div>ZenTask is here</div>
+                </h1>
+            </section>
             <section className='hero' ref={heroRef}>
                 <h1 className='hero__heading' ref={heroHeadingRef}>
                     <span className='hero__heading--span--1'>To-Do</span>.

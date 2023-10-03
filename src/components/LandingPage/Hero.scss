@@ -78,3 +78,30 @@
         line-height: 1.5;
     }
 }
+
+.intro{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: var(--color-text);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    
+
+    &__heading{
+    margin-top: -10rem;
+        font-size: clamp(3rem,3rem + 3vw,9rem);
+        color: var(--color-grey-400);
+
+        & div{
+            position: absolute;
+            top:40%;
+            left:50%;
+            transform: translate(-50%,-5%);
+        }
+    }
+}
