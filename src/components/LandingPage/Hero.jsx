@@ -39,7 +39,8 @@ useLayoutEffect(() => {
         const colors = ['#10b981','#3b82f6','#a855f7']
         ani = gsap.timeline();
         ani.to(sections,{color:'#e5e5e5',textShadow:'0.7rem 0.7rem #525252' ,stagger:1}).
-        to(sections,{color:gsap.utils.wrap(colors),textShadow:'0.1rem 0.1rem #fff',stagger:1},1);
+        to(sections,{color:gsap.utils.wrap(colors),textShadow:'0.1rem 0.1rem #fff',stagger:1},1)
+        .to('.hero__heading--img',{rotate:'360deg'})
 
         
         // DONT USE var in gsap

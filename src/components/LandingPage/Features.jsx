@@ -4,10 +4,36 @@ import percImg from '../../assets/3d/25.svg'
 import barChartImg from '../../assets/3d/9.svg'
 import arrowImg from '../../assets/3d/2.svg'
 import lazyImg from '../../assets/3d/lazy.svg'
+import gsap from "gsap"
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import { useLayoutEffect, useRef } from 'react'
 
 const Features = () => {
+    const featureRef =useRef();
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    useLayoutEffect(() => {
+        const tl = gsap.timeline();
+        gsap.context(() => {
+            tl.set('.feature',{autoAlpha:0})
+            tl.from('.feature',{y:-80,opacity:0,autoAlpha:1,stagger:{
+                amount:1,
+                ease:'power1.in',
+                from:'center'
+            },scrollTrigger:{
+                trigger:'.features__main',
+                markers:true,
+                start:'top top',
+                end:'bottom bottom',
+                scrub:1,
+            }})
+        },featureRef)
+    },[])
+
+
     return <section className='features'>
-        <main className='features__main'>
+        <main className='features__main' ref={featureRef}>
             <article className='feature feature--1'> </article>
              <article className='feature feature--2'>
                 <h3 className='heading__tertiary'>
