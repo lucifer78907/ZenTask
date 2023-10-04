@@ -23,7 +23,6 @@ const Features = () => {
                 from:'center'
             },scrollTrigger:{
                 trigger:'.features__main',
-                markers:true,
                 start:'top top',
                 end:'bottom bottom',
                 scrub:1,

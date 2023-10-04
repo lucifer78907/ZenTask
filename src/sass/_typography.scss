@@ -33,6 +33,12 @@
   font-weight: 700;
   color: var(--color-secondary-500);
   letter-spacing: 0.75px;
+
+  &--testimonials{
+    & span{
+      color: #F43F5E;
+    }
+  }
 }
 
 

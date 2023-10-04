@@ -1,0 +1,53 @@
+.testimonials{
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    text-align: center;
+    padding: 4rem 0rem;
+    position: relative;
+
+    &__cards{
+        padding: 4rem;
+        overflow:hidden;
+        display: flex;
+        gap: 4rem;
+        position: absolute;
+        top: 15%;
+        left: 0%;
+
+        &--2{
+            top: 40%;
+        }
+
+        &--3{
+            top: 65%;
+        }
+
+        
+        
+    }
+
+    &__card{
+        box-shadow: var(--box-shadow-light);
+        border: 1px solid black;
+        border-radius: 11px;
+        flex: 1 0 500px;
+        padding: 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        &--title{
+            font-size: clamp(2.4rem,1rem + 1vw,3.2rem);
+            font-weight: 700;
+            color: #581C87;
+        }
+
+        &--desc{
+            font-size: clamp(1.6rem,1rem + 0.5vw,2rem);
+            line-height: 1.6;
+            color: var(--color-grey-700);
+        }
+    }
+}
+
