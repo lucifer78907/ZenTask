@@ -8,7 +8,7 @@ const Tesitimonial = (props) => {
     const colors = ['#D8B4FE','#86EFAC','#FDA4AF','#FDBA74','#67E8F9']
 
     useLayoutEffect(() => {
-         gsap.set('.testimonials__card',{borderWidth:'10px',borderColor:gsap.utils.wrap(borderColors),backgroundColor:gsap.utils.wrap(colors) }) 
+         gsap.set('.testimonials__card',{backgroundColor:gsap.utils.wrap(colors) }) 
          gsap.set('.testimonials__card--title',{color:gsap.utils.wrap(borderColors)})
         }
     ,[])

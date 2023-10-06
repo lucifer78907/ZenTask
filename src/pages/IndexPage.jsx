@@ -1,6 +1,7 @@
 import Hero from '../components/LandingPage/Hero';
 import Features from '../components/LandingPage/Features';
 import Testimonials from '../components/LandingPage/Tesitimonials';
+import Gallery from '../components/LandingPage/Gallery';
 
 
 const IndexPage = () => {
@@ -9,6 +10,7 @@ const IndexPage = () => {
         <Hero/>
         <Features/>
         <Testimonials/>
+        <Gallery/>
     </>
     );
 }
