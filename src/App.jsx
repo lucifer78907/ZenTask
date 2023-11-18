@@ -10,7 +10,7 @@ import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
-import DailyTodo from "./pages/DailyTodo";
+import DailyTodo from "./pages/Todo Pages/DailyTodo";
 import IndexPage from "./pages/IndexPage";
 
 // #TODO - Create TODO page
