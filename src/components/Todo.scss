@@ -3,6 +3,32 @@
         text-align: center;
     }
 
+    &__slider{
+        width: 100%;
+        height: 10px;
+        border-radius: 11px;
+        background-color: var(--color-primary-200);
+        box-shadow: var(--box-shadow-light);
+
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb{
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--color-primary-500);
+        }
+
+        &--label{
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            color: var(--color-grey-400);
+            font-size: clamp(1.7rem,1rem + 0.5vw,2rem);
+        }
+    }
+
     &__container{
         margin-top: 8rem;
         padding: 4rem;
@@ -11,6 +37,7 @@
         justify-content: center;
         align-items: baseline;
         flex-wrap: wrap;
+
 
     }
 
@@ -24,6 +51,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
 
     }
 
@@ -42,10 +70,16 @@
         font-weight: 700;
         letter-spacing: 0.75px;
         color: var(--color-text);
+        width: 100%;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         line-height: 1.2;
         gap: 4rem;
+
+        & p{
+            margin-right: auto;
+        }
 
 
     }
@@ -55,19 +89,33 @@
         font-weight: 500;
         color: var(--color-grey-500);
         line-height: 1.5;
+        text-align: left;
+        margin-bottom: 2rem;
     }
 
-    // &__box{
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: red;
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     border-radius: 11px;
-    //     background-color: #fff;
-    // }
+    &__footer{
+        text-align: left;
 
+        & aside{
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+    }
+
+    &__change{
+        font-size: clamp(1.6rem,1rem + 0.5vw,1.8rem);
+        color: var(--color-grey-100);
+        font-weight: 700;
+    }
+
+    &__color{
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border:none;
+        border-radius: 11px;
+    }
 }
 
 // details[open] {
