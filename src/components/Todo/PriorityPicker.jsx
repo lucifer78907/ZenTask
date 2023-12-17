@@ -26,6 +26,7 @@ const PriorityPicker = () => {
             <div data-priority='3' className={`picker__box picker__box--3 ${isActive && priority == 3 && 'picker__box--active'}`} onClick={handleClick}>
                 &nbsp;
             </div>
+            <input hidden type='text' name='todo__priority' value={priority} onChange={(e) => console.log('')} />
 
 
         </article>

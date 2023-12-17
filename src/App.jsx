@@ -10,6 +10,7 @@ import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
+import { newTodoAction } from "./components/UI/Modal";
 import DailyTodo from "./pages/Todo Pages/DailyTodo";
 import IndexPage from "./pages/IndexPage";
 
@@ -25,8 +26,8 @@ const App = () => {
       element: <RootLayout />,
       children: [
         {
-          index:true,
-          element:<IndexPage/>
+          index: true,
+          element: <IndexPage />
         },
         {
           path: "signup",
@@ -50,6 +51,7 @@ const App = () => {
             {
               path: ":userId/todos",
               element: <DailyTodo />,
+              action: newTodoAction,
             },
           ],
         },
