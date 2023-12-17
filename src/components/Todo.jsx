@@ -1,11 +1,13 @@
 import './Todo.scss'
 import gsap from 'gsap';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+import colorMap from '../data/PriorityColorMap';
 import { colorArr } from '../data/PriorityColorMap';
 
 const Todo = (props) => {
   const todoRef = useRef();
   const sliderRef = useRef();
+  const [priority, setPriority] = useState(props.priority);
   let isOpen = false;
 
   useLayoutEffect(() => {
@@ -31,7 +33,7 @@ const Todo = (props) => {
     }
     else { //open it
       isOpen = true;
-      gsap.to(todoRef.current, { backgroundColor: props.priority, gap: '2rem' })
+      gsap.to(todoRef.current, { backgroundColor: colorMap.get(priority), gap: '2rem' })
       gsap.context(() => {
         const tl = gsap.timeline();
         tl.to('.todo__footer', { height: 'auto', autoAlpha: 1 })
@@ -47,15 +49,22 @@ const Todo = (props) => {
     e.stopPropagation();
   }
 
-  const filterArr = colorArr.filter(color => color !== props.priority)
-  console.log(filterArr)
+  const filterArr = colorArr.filter(color => color !== colorMap.get(priority))
+
+  const changePriority = (event) => {
+    // e.stopPropagation();
+    const selectedColor = event.currentTarget.dataset.color;
+    const selectedPriority = colorArr.findIndex(color => color === selectedColor);
+
+    setPriority(+(selectedPriority + 1));
+  }
 
 
 
   return (
     <article className="todo__container--item" ref={todoRef} onClick={descShowHandler}>
       <header className="todo__title" >
-        <aside className="todo__priority" style={{ backgroundColor: props.priority }}>&nbsp;</aside>
+        <aside className="todo__priority" style={{ backgroundColor: colorMap.get(priority) }}>&nbsp;</aside>
         <p>{props.title}</p>
         <label className='todo__slider--label' ref={sliderRef} onClick={dragHandler}>
           Progress
@@ -66,10 +75,12 @@ const Todo = (props) => {
         <p className="todo__desc" >Description - : {props.desc}</p>
         <aside>
           <p className='todo__change'>Change priority :</p>
-          <div className='todo__color todo__color--1' style={{ backgroundColor: filterArr[0] }}>&nbsp;</div>
-          <div className='todo__color todo__color--2' style={{ backgroundColor: filterArr[1] }}>&nbsp;</div>
+          <div className='todo__color ' data-color={filterArr[0]} style={{ backgroundColor: filterArr[0] }}
+            onClick={changePriority}>&nbsp;</div>
+          <div className='todo__color ' data-color={filterArr[1]} onClick={changePriority} style={{ backgroundColor: filterArr[1] }}>&nbsp;</div>
         </aside>
       </footer>
+
 
     </article>
   );

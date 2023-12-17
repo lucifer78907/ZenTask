@@ -1,0 +1,40 @@
+.picker{
+    display: flex;
+    gap: 2rem;
+    &__box{
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        box-shadow: var(--box-shadow-light);
+        position: relative;
+        cursor:pointer;
+
+        &--1{
+            background-color: #E11D48;
+
+
+
+        }
+        &--2{
+            background-color: #3B82F6;
+        }
+        &--3{
+            background-color: #f59e0b;
+        }
+
+        &--active{
+            &::before{
+                content: '';
+                width: 50%;
+                height: 50%;
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                position: absolute;
+                background-color: var(--color-grey-100);
+            }
+        }
+        
+    }
+}
