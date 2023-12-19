@@ -6,7 +6,6 @@ import { useLoaderData, json } from "react-router";
 
 const UserHomePage = () => {
   const { user } = useLoaderData();
-  console.log(user);
   return (
     <section className="homepage">
       <h1 className="heading__primary heading__primary--homepage">

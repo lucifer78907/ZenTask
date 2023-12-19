@@ -1,7 +1,7 @@
 import './NewTodo.scss'
 import PriorityPicker from './PriorityPicker';
 
-const NewTodo = () => {
+const NewTodo = ({ isEdit, todoData }) => {
     return <section className="newtodo">
         <header className='newtodo__header'>
             <label className="newtodo__label">Name :
@@ -10,6 +10,7 @@ const NewTodo = () => {
                     type="text"
                     name="todo__title"
                     placeholder='Do 2 leetcode questions'
+                    defaultValue={isEdit ? todoData?.title : ''}
                 />
             </label>
             <label className="newtodo__label">Due Date :
@@ -29,10 +30,12 @@ const NewTodo = () => {
                 placeholder="Complete 2 subarray problems and 2 dynamic programming problems"
                 rows={5}
                 cols={43}
+                defaultValue={isEdit ? todoData?.description : ''}
 
             />
         </label>
-        <PriorityPicker />
+        <input hidden type='text' name='todo__id' value={todoData?.id} onChange={(e) => console.log('')} />
+        <PriorityPicker priorityData={isEdit ? todoData?.priority : null} />
     </section>
 }
 

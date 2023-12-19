@@ -7,7 +7,7 @@ import { useFetcher, json, redirect, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Modal = ({ children, title, closeHandler }) => {
+const Modal = ({ children, title, closeHandler, edit }) => {
     const { userId } = useParams();
     const fetcher = useFetcher();
     const modalRef = useRef();
@@ -20,7 +20,15 @@ const Modal = ({ children, title, closeHandler }) => {
                 onClose: () => closeHandler()
             })
         }
-    }, [fetcher?.data])
+        if (fetcher?.data?.status === 200) {
+            toast.success('Updated todo', {
+                position: toast.POSITION.TOP_RIGHT,
+                onClose: () => {
+                    closeHandler();
+                }
+            })
+        }
+    }, [fetcher?.data, fetcher?.data?.status])
 
 
     useLayoutEffect(() => {
@@ -38,7 +46,7 @@ const Modal = ({ children, title, closeHandler }) => {
 
     return (
         <section className="modal__backdrop" ref={modalRef}>
-            <fetcher.Form method='POST' action={`/homepage/${userId}/todos`}>
+            <fetcher.Form method={edit ? 'PATCH' : 'POST'} action={`/homepage/${userId}/todos`}>
                 <main className="modal__main">
                     <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
                     <p className="modal__title">{title}</p>
@@ -63,22 +71,31 @@ const Modal = ({ children, title, closeHandler }) => {
 export default Modal;
 
 export const newTodoAction = async ({ request, params }) => {
+    const method = request.method;
     const { userId } = params;
 
 
     const data = await request.formData();
 
     const todoData = {
+        id: data.get('todo__id'),
         title: data.get('todo__title'),
         desc: data.get('todo__desc'),
         date: data.get('todo__date'),
         priority: +data.get('todo__priority'),
     }
 
+    let url = `http://localhost:8080/user/${userId}/`
+
+    if (method === 'POST')
+        url += 'createTodo';
+    else if (method === 'PATCH')
+        url += 'updateTodo'
+
     console.log(todoData)
 
-    const response = await fetch(`http://localhost:8080/user/${userId}/createTodo`, {
-        method: "POST",
+    const response = await fetch(url, {
+        method: method,
         headers: {
             "Content-Type": "application/json",
         },

@@ -12,6 +12,20 @@
         cursor: pointer;
     }
 
+    &__editBtn{
+        margin-left: auto;
+        border: none;
+        font-size: clamp(2rem,1rem + 0.5vw,2.4rem);
+        font-weight: 700;
+        color: var(--color-primary-600);
+        background-color: var(--color-primary-200);
+        text-transform: uppercase;
+        padding: 1rem;
+        border-radius: 11px;
+        box-shadow: var(--box-shadow-light);
+        cursor: pointer;
+    }
+
     &__footer--btn{
         display: flex;
         justify-content: center;
@@ -115,6 +129,7 @@
 
     &__footer{
         text-align: left;
+        width: 100%;
 
         & aside{
             display: flex;

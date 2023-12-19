@@ -3,9 +3,11 @@ import './NewTodo.scss'
 import { useState } from 'react';
 
 
-const PriorityPicker = () => {
+const PriorityPicker = ({ priorityData }) => {
     const [priority, setPriority] = useState(3);
     const [isActive, setIsActive] = useState(false);
+
+
 
     const handleClick = (e) => {
         setIsActive(true);

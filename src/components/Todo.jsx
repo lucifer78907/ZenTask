@@ -1,6 +1,6 @@
 import './Todo.scss'
 import gsap from 'gsap';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import colorMap from '../data/PriorityColorMap';
 import { colorArr } from '../data/PriorityColorMap';
 
@@ -16,6 +16,10 @@ const Todo = (props) => {
       gsap.set('.todo__footer', { height: 0, autoAlpha: 0 })
     }, todoRef)
   }, [])
+
+  useEffect(() => {
+    setPriority(props.priority);
+  }, [props.priority]);
 
 
 
@@ -59,6 +63,16 @@ const Todo = (props) => {
     setPriority(+(selectedPriority + 1));
   }
 
+  const editHandler = () => {
+    props.setIsEdit({
+      id: props.id,
+      title: props.title,
+      description: props.desc,
+      priority: props.priority,
+      percCompleted: props.progress
+    });
+  }
+
 
 
   return (
@@ -78,6 +92,7 @@ const Todo = (props) => {
           <div className='todo__color ' data-color={filterArr[0]} style={{ backgroundColor: filterArr[0] }}
             onClick={changePriority}>&nbsp;</div>
           <div className='todo__color ' data-color={filterArr[1]} onClick={changePriority} style={{ backgroundColor: filterArr[1] }}>&nbsp;</div>
+          <button className='todo__editBtn' onClick={editHandler}>Edit todo</button>
         </aside>
       </footer>
 
