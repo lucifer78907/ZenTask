@@ -7,7 +7,7 @@ import { useFetcher, json, redirect, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Modal = ({ children, title, closeHandler, edit }) => {
+const Modal = ({ children, title, closeHandler, edit, todoData }) => {
     const { userId } = useParams();
     const fetcher = useFetcher();
     const modalRef = useRef();
@@ -21,7 +21,7 @@ const Modal = ({ children, title, closeHandler, edit }) => {
             })
         }
         if (fetcher?.data?.status === 200) {
-            toast.success('Updated todo', {
+            toast.success(`${fetcher?.data?.deleted ? 'Deleted' : 'Updated'} todo`, {
                 position: toast.POSITION.TOP_RIGHT,
                 onClose: () => {
                     closeHandler();
@@ -42,27 +42,34 @@ const Modal = ({ children, title, closeHandler, edit }) => {
         closeHandler();
     }
 
+    const deleteTodo = () => {
+        fetcher.submit({ id: todoData.id }, { method: 'DELETE', action: `/homepage/${userId}/todos` })
+    }
+
 
 
     return (
         <section className="modal__backdrop" ref={modalRef}>
-            <fetcher.Form method={edit ? 'PATCH' : 'POST'} action={`/homepage/${userId}/todos`}>
-                <main className="modal__main">
-                    <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
-                    <p className="modal__title">{title}</p>
-                    {children}
-                    <aside>
-                        <button className='modal__btn modal__btn--blue' >
-                            <FaRegCheckCircle style={{ width: '3rem', height: '3rem' }} />
-                            Submit
-                        </button>
-                        <button className='modal__btn' onClick={handleAnimation}>
-                            <RxCrossCircled style={{ width: '3rem', height: '3rem' }} />
-                            Close
-                        </button>
-                    </aside>
-                </main>
-            </fetcher.Form>
+            <div className='modal__ref'>
+                {edit && <button className='todo__editBtn todo__editBtn--delete' onClick={deleteTodo} >Delete todo</button>}
+                <fetcher.Form method={edit ? 'PATCH' : 'POST'} action={`/homepage/${userId}/todos`}>
+                    <main className="modal__main">
+                        <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
+                        <p className="modal__title">{title}</p>
+                        {children}
+                        <aside>
+                            <button className='modal__btn modal__btn--blue' >
+                                <FaRegCheckCircle style={{ width: '3rem', height: '3rem' }} />
+                                Submit
+                            </button>
+                            <button className='modal__btn' onClick={handleAnimation}>
+                                <RxCrossCircled style={{ width: '3rem', height: '3rem' }} />
+                                Close
+                            </button>
+                        </aside>
+                    </main>
+                </fetcher.Form>
+            </div>
 
         </section >
     );
@@ -77,6 +84,19 @@ export const newTodoAction = async ({ request, params }) => {
 
     const data = await request.formData();
 
+    if (method === 'DELETE') {
+        const id = data.get('id')
+        const response = await fetch(`http://localhost:8080/user/deleteTodo/${id}`, {
+            method: method,
+        });
+
+        console.log(response);
+
+        if (!response.ok) throw json({ message: "Could not delete a todo" });
+
+        return response;
+    }
+
     const todoData = {
         id: data.get('todo__id'),
         title: data.get('todo__title'),
@@ -84,6 +104,8 @@ export const newTodoAction = async ({ request, params }) => {
         date: data.get('todo__date'),
         priority: +data.get('todo__priority'),
     }
+
+
 
     let url = `http://localhost:8080/user/${userId}/`
 

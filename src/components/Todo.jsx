@@ -61,6 +61,13 @@ const Todo = (props) => {
     const selectedPriority = colorArr.findIndex(color => color === selectedColor);
 
     setPriority(+(selectedPriority + 1));
+    props.changePriority({
+      id: props.id,
+      title: props.title,
+      description: props.desc,
+      priority: +(selectedPriority + 1),
+      percCompleted: props.progress
+    })
   }
 
   const editHandler = () => {
@@ -73,6 +80,14 @@ const Todo = (props) => {
     });
   }
 
+  const progressChangeHandler = (e) => {
+    const currValue = +e.target.value;
+    if (currValue === 100) //todo is completed
+    {
+      props.todoDelete(props.id)
+    }
+  }
+
 
 
   return (
@@ -82,7 +97,7 @@ const Todo = (props) => {
         <p>{props.title}</p>
         <label className='todo__slider--label' ref={sliderRef} onClick={dragHandler}>
           Progress
-          <input type='range' min={0} max={100} step='20' defaultValue={props.progress} className='todo__slider' />
+          <input type='range' min={0} max={100} step='20' defaultValue={props.progress} className='todo__slider' onChange={progressChangeHandler} />
         </label>
       </header>
       <footer className='todo__footer'>

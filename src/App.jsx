@@ -15,9 +15,9 @@ import { newTodoAction } from "./components/UI/Modal";
 import DailyTodo from "./pages/Todo Pages/DailyTodo";
 import IndexPage from "./pages/IndexPage";
 
-// #TODO - Create TODO page
-// #TODO - Add backend for TODO's
-// #TODO - Add microinteractions and animations
+
+// #OPTIMIZATION - Create a seperate path for updating priority only
+// #OPTIMIZATION - DELETE todo ref from user todo ref array after deleting them
 
 const App = () => {
   const { themeColor } = useContext(uiContext);

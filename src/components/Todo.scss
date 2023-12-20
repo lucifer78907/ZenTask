@@ -24,6 +24,15 @@
         border-radius: 11px;
         box-shadow: var(--box-shadow-light);
         cursor: pointer;
+
+        &--delete{
+            margin-left: 1rem;
+            position: absolute;
+            top: -2%;
+            right: 50%;
+            transform: translate(50%,0);
+            z-index: 100;
+        }
     }
 
     &__footer--btn{

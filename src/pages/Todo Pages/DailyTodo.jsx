@@ -4,19 +4,19 @@ import Modal from '../../components/UI/Modal';
 import { LuListPlus } from "react-icons/lu";
 import { useEffect, useState } from 'react';
 import NewTodo from '../../components/Todo/NewTodo';
-import { useLoaderData, json } from 'react-router';
+import { useLoaderData, json, useParams } from 'react-router';
+import { useFetcher } from 'react-router-dom';
 
 
 
 const DailyTodo = () => {
+  const fetcher = useFetcher();
+  const { userId } = useParams();
   const { todos: Todos } = useLoaderData();
-  console.log(Todos);
   const [isModalOpen, setModalOpen] = useState(false);
   const [todoData, setData] = useState();
   const [isEdit, setIsEdit] = useState(false);
 
-  // #TODO - Check todo updating func , as it updates all from backend,update using specific id of todo not user
-  // #TODO - Check todo update after priority color1
 
 
 
@@ -35,16 +35,30 @@ const DailyTodo = () => {
     setIsEdit(true);
   }
 
+  const changePriorityHandler = (data) => {
+    fetcher.submit({
+      todo__id: data.id,
+      todo__title: data.title,
+      todo__desc: data.description,
+      todo__priority: +data.priority,
+      todo__percCompleted: data.percCompleted,
+    }, { method: 'PATCH', action: `/homepage/${userId}/todos` })
+  }
+
+  const todoDeleteOnCompleteProgressHandler = (id) => {
+    fetcher.submit({ id: id }, { method: 'DELETE', action: `/homepage/${userId}/todos` })
+  }
+
 
 
   return <section className='todo__section'>
     {isModalOpen && <Modal title='Create new task' edit={false} closeHandler={modalCloseHandler}><NewTodo isEdit={false} /></Modal>}
-    {isEdit && <Modal title='Edit todo' edit={true} closeHandler={modalCloseHandler}><NewTodo isEdit={true} todoData={todoData} /></Modal>}
+    {isEdit && <Modal title='Edit todo' edit={true} todoData={todoData} closeHandler={modalCloseHandler}><NewTodo isEdit={true} todoData={todoData} /></Modal>}
     <h1 className='heading__primary'>Goals to finish today</h1>
     <main className="todo__container">
       {/* sorting on basis of priority */}
       {Todos.sort((a, b) => a.priority - b.priority).map(todo => {
-        return <Todo setIsEdit={setEditModalHandler} key={todo.id} id={todo.id} title={todo.title} desc={todo.description} priority={todo.priority} progress={todo.progress} />
+        return <Todo setIsEdit={setEditModalHandler} changePriority={changePriorityHandler} todoDelete={todoDeleteOnCompleteProgressHandler} key={todo.id} id={todo.id} title={todo.title} desc={todo.description} priority={todo.priority} progress={todo.progress} />
       })}
     </main>
     <footer className='todo__footer--btn'>
