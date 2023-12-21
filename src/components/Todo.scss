@@ -1,4 +1,26 @@
 .todo{
+    &__dueDate{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        font-size: clamp(1.6rem,1rem + 0.5vw,2rem);
+        color: #fafafa;
+        font-weight: 700;
+        transform: translate(-50%,0);
+
+        &--date{
+            background-color: #fafafa;
+            padding: 1rem;
+            border-radius: 11px;
+            color: var(--color-primary-500);
+        }
+        
+    }
+
     &__addButton{
         border:none;
         font-size: clamp(4rem,4rem + 2vw,10rem);
@@ -133,12 +155,13 @@
         color: var(--color-grey-500);
         line-height: 1.5;
         text-align: left;
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
     }
 
     &__footer{
         text-align: left;
         width: 100%;
+        position: relative;
 
         & aside{
             display: flex;

@@ -103,6 +103,7 @@ export const newTodoAction = async ({ request, params }) => {
         desc: data.get('todo__desc'),
         date: data.get('todo__date'),
         priority: +data.get('todo__priority'),
+        percCompleted: data.get('todo__percCompleted')
     }
 
 

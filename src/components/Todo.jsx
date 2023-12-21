@@ -8,6 +8,24 @@ const Todo = (props) => {
   const todoRef = useRef();
   const sliderRef = useRef();
   const [priority, setPriority] = useState(props.priority);
+  const monthMap = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mar",
+    4: "Apr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sep",
+    10: "Oct",
+    11: "Nov",
+    12: "Dec"
+  };
+  const date = new Date(props.dueDate);
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const day = date.getDate();
   let isOpen = false;
 
   useLayoutEffect(() => {
@@ -66,7 +84,8 @@ const Todo = (props) => {
       title: props.title,
       description: props.desc,
       priority: +(selectedPriority + 1),
-      percCompleted: props.progress
+      percCompleted: props.progress,
+      dueDate: props.dueDate,
     })
   }
 
@@ -76,7 +95,8 @@ const Todo = (props) => {
       title: props.title,
       description: props.desc,
       priority: props.priority,
-      percCompleted: props.progress
+      percCompleted: props.progress,
+      dueDate: props.dueDate,
     });
   }
 
@@ -86,6 +106,19 @@ const Todo = (props) => {
     {
       props.todoDelete(props.id)
     }
+  }
+
+  const returnDate = (year, month, date) => {
+    const now = new Date();
+    const currMonth = now.getMonth() + 1;
+    const currYear = now.getFullYear();
+    const currDay = now.getDate();
+    if (currMonth === month && currYear === year && currDay === date)
+      return 'Today';
+    else if (currMonth === month && currYear === year && currDay + 1 === date)
+      return 'Tomorrow';
+    else
+      return `${monthMap[month]} ${date} ${year}`;
   }
 
 
@@ -109,6 +142,7 @@ const Todo = (props) => {
           <div className='todo__color ' data-color={filterArr[1]} onClick={changePriority} style={{ backgroundColor: filterArr[1] }}>&nbsp;</div>
           <button className='todo__editBtn' onClick={editHandler}>Edit todo</button>
         </aside>
+        <div className='todo__dueDate'><span>Due Date</span> <span className='todo__dueDate--date'>{returnDate(year, month, day)}</span></div>
       </footer>
 
 

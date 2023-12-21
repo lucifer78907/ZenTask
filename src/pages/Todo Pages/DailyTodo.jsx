@@ -42,6 +42,7 @@ const DailyTodo = () => {
       todo__desc: data.description,
       todo__priority: +data.priority,
       todo__percCompleted: data.percCompleted,
+      todo__date: data.dueDate,
     }, { method: 'PATCH', action: `/homepage/${userId}/todos` })
   }
 
@@ -58,7 +59,7 @@ const DailyTodo = () => {
     <main className="todo__container">
       {/* sorting on basis of priority */}
       {Todos.sort((a, b) => a.priority - b.priority).map(todo => {
-        return <Todo setIsEdit={setEditModalHandler} changePriority={changePriorityHandler} todoDelete={todoDeleteOnCompleteProgressHandler} key={todo.id} id={todo.id} title={todo.title} desc={todo.description} priority={todo.priority} progress={todo.progress} />
+        return <Todo setIsEdit={setEditModalHandler} changePriority={changePriorityHandler} todoDelete={todoDeleteOnCompleteProgressHandler} key={todo.id} id={todo.id} title={todo.title} desc={todo.description} priority={todo.priority} progress={todo.progress} dueDate={todo.dueDate} />
       })}
     </main>
     <footer className='todo__footer--btn'>

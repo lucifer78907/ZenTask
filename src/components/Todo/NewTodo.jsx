@@ -2,6 +2,12 @@ import './NewTodo.scss'
 import PriorityPicker from './PriorityPicker';
 
 const NewTodo = ({ isEdit, todoData }) => {
+    const date = new Date();
+    const currYear = date.getFullYear();
+    const currMonth = date.getMonth();
+    const currDay = date.getDate();
+
+
     return <section className="newtodo">
         <header className='newtodo__header'>
             <label className="newtodo__label">Name :
@@ -19,6 +25,8 @@ const NewTodo = ({ isEdit, todoData }) => {
                     className="newtodo__input"
                     type='date'
                     name="todo__date"
+                    min={`${currYear}-${currMonth + 1}-${currDay}`}
+                    defaultValue={isEdit ? `${currYear}-${currMonth + 1}-${currDay}` : ``}
                 />
             </label>
         </header>
