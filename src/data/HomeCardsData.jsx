@@ -26,7 +26,7 @@ export const HomeCardData = [
     darkImg: arrowImgDark,
     backgroundColor: "#fff",
     color: "#EF4444",
-    page: "future-todos",
+    page: "futureTodos",
   },
   {
     id: 3,

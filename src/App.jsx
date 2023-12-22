@@ -10,10 +10,12 @@ import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
-import { loader as todoLoader } from './pages/Todo Pages/DailyTodo'
+import { loader as todoLoader } from './pages/Todo Pages/TodoList'
 import { newTodoAction } from "./components/UI/Modal";
-import DailyTodo from "./pages/Todo Pages/DailyTodo";
+import { loader as futureTodoLoader } from './pages/Todo Pages/FutureTodo'
+import TodoList from "./pages/Todo Pages/TodoList";
 import IndexPage from "./pages/IndexPage";
+import FutureTodo from "./pages/Todo Pages/FutureTodo";
 
 
 // #OPTIMIZATION - Create a seperate path for updating priority only
@@ -51,10 +53,15 @@ const App = () => {
             },
             {
               path: ":userId/todos",
-              element: <DailyTodo />,
+              element: <TodoList title="today" />,
               loader: todoLoader,
               action: newTodoAction,
             },
+            {
+              path: ":userId/futureTodos",
+              element: <FutureTodo />,
+              loader: futureTodoLoader
+            }
           ],
         },
       ],

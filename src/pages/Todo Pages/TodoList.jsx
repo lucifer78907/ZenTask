@@ -9,7 +9,7 @@ import { useFetcher } from 'react-router-dom';
 
 
 
-const DailyTodo = () => {
+const TodoList = (props) => {
   const fetcher = useFetcher();
   const { userId } = useParams();
   const { todos: Todos } = useLoaderData();
@@ -55,7 +55,7 @@ const DailyTodo = () => {
   return <section className='todo__section'>
     {isModalOpen && <Modal title='Create new task' edit={false} closeHandler={modalCloseHandler}><NewTodo isEdit={false} /></Modal>}
     {isEdit && <Modal title='Edit todo' edit={true} todoData={todoData} closeHandler={modalCloseHandler}><NewTodo isEdit={true} todoData={todoData} /></Modal>}
-    <h1 className='heading__primary'>Goals to finish today</h1>
+    <h1 className='heading__primary'>Goals to finish {props.title}</h1>
     <main className="todo__container">
       {/* sorting on basis of priority */}
       {Todos.sort((a, b) => a.priority - b.priority).map(todo => {
@@ -81,6 +81,6 @@ export const loader = async ({ request, params }) => {
 };
 
 
-export default DailyTodo;
+export default TodoList;
 
 
