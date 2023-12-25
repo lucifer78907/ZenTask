@@ -8,20 +8,11 @@ const Testimonials = () => {
     const testRef = useRef();
 
     useLayoutEffect(() => {
-        gsap.defaults({ ease: 'power2.out' })
+        gsap.defaults({ ease: 'power2.out', duration: 60 })
         gsap.set('.testimonials__cards--2', { left: '-180%' })
-        gsap.to('.testimonials__cards--1', {
-            left: '-180%',
-            scrollTrigger: {
-                trigger: '.testimonials__cards--1',
-                start: 'center 90%',
-                end: '+=' + `${document.querySelector('.testimonials').offsetHeight}`,
-                scrub: 10,
-                markers: true,
-            }
-        });
-        gsap.to('.testimonials__cards--2', { left: '0%', duration: 80 });
-        gsap.to('.testimonials__cards--3', { left: '-180%', duration: 70 });
+        gsap.to('.testimonials__cards--1', { left: '-180%' });
+        gsap.to('.testimonials__cards--2', { left: '0% ' });
+        gsap.to('.testimonials__cards--3', { left: '-180%' });
     }, [])
 
 
