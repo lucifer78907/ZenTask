@@ -1,9 +1,23 @@
+@use "../sass/mixin" as a;
+
 .header {
   padding: 4rem 6rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
+  @include a.respond(phone) {
+    padding: 4rem 3rem;
+  }
+}
+
+.app__icon {
+  @include a.respond(tab-land) {
+    height: 6rem;
+  }
+  @include a.respond(phone) {
+    height: 5rem;
+  }
 }
 
 .theme__toggle {
@@ -15,6 +29,11 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @include a.respond(tab-land) {
+    height: 7rem;
+    width: 7rem;
+  }
 
   & span {
     background-color: var(--color-secondary-500);

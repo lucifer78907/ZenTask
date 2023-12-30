@@ -10,13 +10,12 @@ import RootLayout from "./pages/RootLayout";
 import { useContext, useEffect } from "react";
 import uiContext from "./context/ui-context";
 import { signUpAction, loginAction } from "./components/Form";
-import { loader as todoLoader } from './pages/Todo Pages/TodoList'
+import { loader as todoLoader } from "./pages/Todo Pages/TodoList";
 import { newTodoAction } from "./components/UI/Modal";
-import { loader as futureTodoLoader } from './pages/Todo Pages/FutureTodo'
+import { loader as futureTodoLoader } from "./pages/Todo Pages/FutureTodo";
 import TodoList from "./pages/Todo Pages/TodoList";
 import IndexPage from "./pages/IndexPage";
 import FutureTodo from "./pages/Todo Pages/FutureTodo";
-
 
 // #OPTIMIZATION - Create a seperate path for updating priority only
 // #OPTIMIZATION - DELETE todo ref from user todo ref array after deleting them
@@ -30,7 +29,7 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <IndexPage />
+          element: <IndexPage />,
         },
         {
           path: "signup",
@@ -60,8 +59,8 @@ const App = () => {
             {
               path: ":userId/futureTodos",
               element: <FutureTodo />,
-              loader: futureTodoLoader
-            }
+              loader: futureTodoLoader,
+            },
           ],
         },
       ],
