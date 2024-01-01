@@ -2,7 +2,7 @@ import "../../components/Todo.scss";
 import Todo from "../../components/Todo";
 import Modal from "../../components/UI/Modal";
 import { LuListPlus } from "react-icons/lu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewTodo from "../../components/Todo/NewTodo";
 import { useLoaderData, json, useParams } from "react-router";
 import { useFetcher } from "react-router-dom";

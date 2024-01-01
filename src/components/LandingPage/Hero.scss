@@ -5,6 +5,9 @@
   padding: 4rem;
   background-color: var(--color-bg);
   position: relative;
+  @include a.respond(tab-port) {
+    padding: 1rem;
+  }
 }
 
 .hero {
@@ -14,15 +17,39 @@
   align-items: center;
   gap: 6rem;
   padding-top: 15rem;
+  @include a.respond(tab-port) {
+    gap: 6rem;
+    padding-top: 0rem;
+  }
 
   &__image {
     position: absolute;
+    @include a.respond(tab-land) {
+      height: 15rem;
+    }
+
+    @include a.respond(tab-port) {
+      height: 10rem;
+    }
+
+    @include a.respond(phone) {
+      height: 8rem;
+      mix-blend-mode: difference;
+    }
 
     &--1 {
       bottom: 5%;
       right: 0;
       rotate: 20deg;
       width: 20rem;
+
+      @include a.respond(tab-port) {
+        right: -5%;
+      }
+      @include a.respond(phone) {
+        top: 32%;
+        right: -13%;
+      }
     }
 
     &--2 {
@@ -30,22 +57,41 @@
       left: 0;
       width: 20rem;
       rotate: -20deg;
+      @include a.respond(tab-port) {
+        left: -5%;
+      }
+      @include a.respond(phone) {
+        top: 0%;
+        left: -12%;
+      }
     }
 
     &--3 {
       bottom: 3%;
       width: 10rem;
       rotate: 130deg;
+      @include a.respond(tab-port) {
+        width: 7rem;
+      }
+      @include a.respond(phone) {
+        bottom: 0%;
+      }
     }
   }
 
   &__heading {
-    font-size: clamp(2rem, 2rem + 5vw, 12rem);
+    font-size: clamp(5rem, 2rem + 5vw, 12rem);
     font-weight: 700;
     letter-spacing: 2px;
     position: relative;
     z-index: 1;
     color: var(--color-grey-300);
+
+    @include a.respond(tab-port) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     &--img {
       position: absolute;
@@ -55,7 +101,12 @@
       z-index: -1;
 
       @include a.respond(tab-land) {
-        width: 6rem;
+        top: -35%;
+        right: -7%;
+      }
+
+      @include a.respond(tab-port) {
+        display: none;
       }
     }
 
@@ -73,13 +124,19 @@
   }
 
   &__para {
-    font-size: clamp(1.7rem, 1rem + 0.5vw, 3rem);
+    font-size: clamp(1.6rem, 1rem + 0.5vw, 3rem);
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--color-grey-500);
     width: 80%;
     text-align: left;
     line-height: 1.5;
+
+    @include a.respond(tab-port) {
+      width: 90%;
+      font-weight: 500;
+      hyphens: auto;
+    }
   }
 }
 

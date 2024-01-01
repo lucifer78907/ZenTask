@@ -1,40 +1,50 @@
-.newtodo{
+@use "../../sass/mixin" as a;
+
+.newtodo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 2rem;
+
+  @include a.respond(tab-port) {
+    align-items: center;
+  }
+
+  &__header {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 3rem;
-    padding: 2rem;
+  }
 
-    &__header{
-        display: flex;
-        gap: 3rem;
+  &__label {
+    font-size: clamp(2rem, 1rem + 1vw, 3.2rem);
+    font-weight: 500;
+    color: var(--color-grey-500);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+
+    @include a.respond(tab-port) {
+      flex-direction: column;
+      align-items: flex-start;
     }
+  }
 
-    &__label{
-        font-size: clamp(2rem,1rem + 1vw,3.2rem);
-        font-weight: 500;
-        color: var(--color-grey-500);
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        gap: 2rem;
+  &__input {
+    font-family: inherit;
+    border: 1px dashed var(--color-grey-400);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-grey-600);
+    padding: 1rem;
 
+    &::placeholder {
+      color: var(--color-grey-400);
     }
-
-    &__input{
-        font-family: inherit;
-        border: 1px dashed var(--color-grey-400);
-        font-size: 2rem;
-        font-weight: 300;
-        color: var(--color-grey-600);
-        padding: 1rem;
-
-        &::placeholder{
-            color: var(--color-grey-400);
-        }
-    }
+  }
 }
 
-textarea{
-    resize: none;
+textarea {
+  resize: none;
 }
