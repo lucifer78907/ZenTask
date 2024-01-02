@@ -1,3 +1,4 @@
+@use "../../sass/mixin" as a;
 .gallery {
   min-height: 100vh;
   background-color: var(--color-bg);
@@ -42,7 +43,16 @@
       z-index: 2;
       top: -22%;
       left: -5%;
-      font-size: 80em;
+      font-size: clamp(10em, 10em + 50vw, 80em);
+
+      @include a.respond(tab-port) {
+        top: -15%;
+      }
+
+      @include a.respond(phone) {
+        top: -5%;
+      }
+
       background-image: linear-gradient(#fafafa, transparent);
       -webkit-background-clip: text;
       background-clip: text;

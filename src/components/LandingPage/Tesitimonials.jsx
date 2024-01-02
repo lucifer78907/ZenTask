@@ -13,9 +13,24 @@ const Testimonials = () => {
 
   useLayoutEffect(() => {
     gsap.set(".testimonials__cards--2", { left: "-180%" });
-    gsap.to(".testimonials__cards--1", { left: "-180%", duration: 60 });
-    gsap.to(".testimonials__cards--2", { left: "0% ", duration: 60 });
-    gsap.to(".testimonials__cards--3", { left: "-180%", duration: 60 });
+    gsap.to(".testimonials__cards--1", {
+      left: "-180%",
+      duration: 60,
+      repeat: -1,
+      yoyo: true,
+    });
+    gsap.to(".testimonials__cards--2", {
+      left: "0% ",
+      duration: 60,
+      repeat: -1,
+      yoyo: true,
+    });
+    gsap.to(".testimonials__cards--3", {
+      left: "-180%",
+      duration: 60,
+      repeat: -1,
+      yoyo: true,
+    });
   }, []);
 
   return (

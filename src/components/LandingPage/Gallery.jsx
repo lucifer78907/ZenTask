@@ -15,12 +15,7 @@ const Gallery = () => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        ease: "power2.in",
-        duration: 1,
-        repeat: 0,
-        yoyo: false,
-      });
+      const tl = gsap.timeline({ ease: "power2.in" });
       tl.from(".gallery__main--0", { yPercent: 130 })
         .from(
           ".heading__primary--0",
