@@ -1,52 +1,75 @@
-.testimonials{
-    min-height: 100vh;
-    background-color: var(--color-bg);
-    text-align: center;
-    padding: 4rem 0rem;
-    position: relative;
+@use "../../sass/mixin" as a;
 
-    &__cards{
-        padding: 4rem;
-        overflow:hidden;
-        display: flex;
-        gap: 4rem;
-        position: absolute;
-        top: 15%;
-        left: 0%;
+.testimonials {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  text-align: center;
+  padding: 4rem 0rem;
+  position: relative;
 
-        &--2{
-            top: 40%;
-        }
-
-        &--3{
-            top: 65%;
-        }
-
-        
-        
+  &__cards {
+    padding: 4rem;
+    overflow: hidden;
+    display: flex;
+    gap: 4rem;
+    position: absolute;
+    top: 15%;
+    left: 0%;
+    @include a.respond(tab-port) {
+      top: 10%;
+      padding: 0;
+    }
+    @include a.respond(phone) {
+      top: 20%;
     }
 
-    &__card{
-        box-shadow: var(--box-shadow-light);
-        border-radius: 11px;
-        flex: 1 0 500px;
-        padding: 2rem 4rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        &--title{
-            font-size: clamp(2.4rem,1rem + 1vw,3.2rem);
-            font-weight: 700;
-            color: #581C87;
-        }
-
-        &--desc{
-            font-size: clamp(1.6rem,1rem + 0.5vw,2rem);
-            line-height: 1.6;
-            color: var(--color-grey-700);
-        }
+    &--2 {
+      top: 40%;
+      @include a.respond(tab-port) {
+        top: 37%;
+      }
+      @include a.respond(phone) {
+        top: 45%;
+      }
     }
+
+    &--3 {
+      top: 65%;
+      @include a.respond(phone) {
+        top: 70%;
+      }
+    }
+  }
+
+  &__card {
+    box-shadow: var(--box-shadow-light);
+    border-radius: 11px;
+    flex: 1 0 500px;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    @include a.respond(tab-port) {
+      flex: 1 0 400px;
+    }
+    @include a.respond(phone) {
+      flex: 1 0 300px;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    &--title {
+      hyphens: auto;
+      font-size: clamp(2rem, 1rem + 1vw, 3.2rem);
+      font-weight: 700;
+      color: #581c87;
+    }
+
+    &--desc {
+      font-size: clamp(1.6rem, 1rem + 0.5vw, 2rem);
+      line-height: 1.6;
+      color: var(--color-grey-700);
+    }
+  }
 }
-

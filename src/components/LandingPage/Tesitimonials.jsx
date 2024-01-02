@@ -12,11 +12,10 @@ const Testimonials = () => {
   const testRef = useRef();
 
   useLayoutEffect(() => {
-    gsap.defaults({ ease: "power2.out", duration: 60 });
     gsap.set(".testimonials__cards--2", { left: "-180%" });
-    gsap.to(".testimonials__cards--1", { left: "-180%" });
-    gsap.to(".testimonials__cards--2", { left: "0% " });
-    gsap.to(".testimonials__cards--3", { left: "-180%" });
+    gsap.to(".testimonials__cards--1", { left: "-180%", duration: 60 });
+    gsap.to(".testimonials__cards--2", { left: "0% ", duration: 60 });
+    gsap.to(".testimonials__cards--3", { left: "-180%", duration: 60 });
   }, []);
 
   return (
