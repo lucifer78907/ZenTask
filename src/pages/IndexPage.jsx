@@ -5,12 +5,13 @@ import Gallery from "../components/LandingPage/Gallery";
 
 const IndexPage = () => {
   return (
-    <>
+    <div style={{ overflowX: "hidden" }}>
+      //to prevent overflow
       <Hero />
       <Features />
       <Testimonials />
       <Gallery />
-    </>
+    </div>
   );
 };
 
