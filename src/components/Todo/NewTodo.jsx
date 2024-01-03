@@ -4,8 +4,12 @@ import PriorityPicker from "./PriorityPicker";
 const NewTodo = ({ isEdit, todoData }) => {
   const date = new Date();
   const currYear = date.getFullYear();
-  const currMonth = date.getMonth();
-  const currDay = date.getDate();
+  let currMonth = date.getMonth();
+  currMonth = currMonth + 1; //as it is 0 indexed
+  if (currMonth < 10) currMonth = "0" + currMonth;
+  let currDay = date.getDate();
+  if (currDay < 10) currDay = "0" + currDay;
+  console.log(currYear, currMonth, currDay);
 
   return (
     <section className="newtodo">
@@ -26,10 +30,8 @@ const NewTodo = ({ isEdit, todoData }) => {
             className="newtodo__input"
             type="date"
             name="todo__date"
-            min={`${currYear}-${currMonth + 1}-${currDay}`}
-            defaultValue={
-              isEdit ? `${currYear}-${currMonth + 1}-${currDay}` : ``
-            }
+            // min={`${currYear}-${currMonth}-${currDay}`}
+            defaultValue={isEdit ? `${currYear}-${currMonth}-${currDay}` : ``}
           />
         </label>
       </header>

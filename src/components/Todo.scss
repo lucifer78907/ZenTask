@@ -1,6 +1,32 @@
 @use "../sass/mixin" as a;
 
 .todo {
+  &__prev {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    gap: 4rem;
+    @include a.respond(tab-port) {
+      padding: 1rem;
+    }
+
+    @include a.respond(phone) {
+      padding: 0.5rem;
+    }
+    &--title,
+    &--subtitle {
+      font-size: clamp(3rem, 2rem + 1vw, 6rem);
+      font-weight: 500;
+      color: var(--color-grey-400);
+      text-transform: uppercase;
+    }
+
+    &--subtitle {
+      text-transform: none;
+      color: var(--color-grey-300);
+    }
+  }
+
   &__dueDate {
     display: flex;
     flex-direction: column;
@@ -70,7 +96,7 @@
     }
   }
 
-  &__footer--btn {
+  &__footer--addBtn {
     display: flex;
     justify-content: center;
   }

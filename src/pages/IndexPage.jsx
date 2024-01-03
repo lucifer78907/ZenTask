@@ -4,9 +4,9 @@ import Testimonials from "../components/LandingPage/Tesitimonials";
 import Gallery from "../components/LandingPage/Gallery";
 
 const IndexPage = () => {
+  //to prevent overflow
   return (
     <div style={{ overflowX: "hidden" }}>
-      //to prevent overflow
       <Hero />
       <Features />
       <Testimonials />
