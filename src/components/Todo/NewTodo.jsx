@@ -35,7 +35,7 @@ const NewTodo = ({ isEdit, todoData }) => {
           />
         </label>
       </header>
-      <label className="newtodo__label">
+      <label className="newtodo__label newtodo__textarea">
         Description :
         <textarea
           className="newtodo__input "

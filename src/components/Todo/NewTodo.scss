@@ -11,9 +11,20 @@
     align-items: center;
   }
 
+  @include a.respond(phone) {
+    align-items: stretch;
+  }
+
   &__header {
     display: flex;
     gap: 3rem;
+    @include a.respond(tab-port) {
+      flex-direction: column;
+      align-items: center;
+    }
+    @include a.respond(phone) {
+      align-items: stretch;
+    }
   }
 
   &__label {
@@ -28,6 +39,20 @@
     @include a.respond(tab-port) {
       flex-direction: column;
       align-items: flex-start;
+    }
+    @include a.respond(phone) {
+      align-items: stretch;
+    }
+  }
+
+  &__textarea {
+    @include a.respond(tab-port) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    @include a.respond(phone) {
+      align-items: stretch;
     }
   }
 
@@ -47,4 +72,10 @@
 
 textarea {
   resize: none;
+  @include a.respond(tab-port) {
+    width: 70%;
+  }
+  @include a.respond(phone) {
+    width: 100%;
+  }
 }

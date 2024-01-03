@@ -22,7 +22,6 @@ const TodoList = (props) => {
   const fetcher = useFetcher();
   const { userId } = useParams();
   const { todos: Todos } = useLoaderData();
-  console.log(Todos);
   const prevTodos = [];
   const currTodos = [];
   for (const item of Todos) {

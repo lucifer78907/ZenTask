@@ -1,3 +1,5 @@
+@use "../../sass/mixin" as a;
+
 .modal {
   &__backdrop {
     background-color: rgba(120, 119, 119, 0.753);
@@ -26,6 +28,7 @@
   &__main {
     max-width: 100%;
     padding: 4rem;
+    margin: 1rem;
     background-color: #fafafa;
     border-radius: 11px;
     box-shadow: var(--box-shadow-light);
@@ -38,6 +41,10 @@
     & aside {
       display: flex;
       gap: 2rem;
+    }
+
+    @include a.respond(tab-port) {
+      padding: 2rem 1rem;
     }
   }
 
