@@ -16,6 +16,7 @@ import { loader as futureTodoLoader } from "./pages/Todo Pages/FutureTodo";
 import TodoList from "./pages/Todo Pages/TodoList";
 import IndexPage from "./pages/IndexPage";
 import FutureTodo from "./pages/Todo Pages/FutureTodo";
+import UserProfile from "./pages/Todo Pages/UserProfile";
 
 // #OPTIMIZATION - Create a seperate path for updating priority only
 // #OPTIMIZATION - DELETE todo ref from user todo ref array after deleting them
@@ -60,6 +61,11 @@ const App = () => {
               path: ":userId/futureTodos",
               element: <FutureTodo />,
               loader: futureTodoLoader,
+            },
+            {
+              path: ":userId/profile",
+              element: <UserProfile />,
+              loader: userLoader,
             },
           ],
         },
