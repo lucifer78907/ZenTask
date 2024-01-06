@@ -3,15 +3,14 @@ import ProfileInput from "../../components/Todo/ProfileInput";
 import { RxCrossCircled } from "react-icons/rx";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useLoaderData } from "react-router";
-import { useFetcher } from "react-router-dom";
+import { useFetcher, json } from "react-router-dom";
 
 const UserProfile = (props) => {
   const { user: userData } = useLoaderData();
-  console.log(userData);
   const fetcher = useFetcher();
 
   return (
-    <fetcher.Form method="PUT">
+    <fetcher.Form method="PUT" encType="multipart/form-data">
       <section className="profile">
         <h1 className="heading__primary">Edit your profile</h1>
         <main className="profile__details--container">
@@ -22,33 +21,38 @@ const UserProfile = (props) => {
           />
           <ProfileInput
             label="Username"
+            name="username"
             type="text"
             placeholder={userData.username}
           />
           <ProfileInput
             label="Email"
+            name="email"
             type="email"
             placeholder={userData.email}
           />
           <ProfileInput
             label="Password"
+            name="password"
             type="password"
             placeholder="*************"
           />
           <ProfileInput
             label="New Password"
+            name="confirmPassword"
             type="password"
             placeholder="*************"
           />
-          <ProfileInput label="Image" type="file" placeholder="*************" />
+          <ProfileInput
+            label="Image"
+            name="image"
+            type="file"
+            placeholder="*************"
+          />
           <aside className="profile__details--buttons">
             <button className="modal__btn modal__btn--blue">
               <FaRegCheckCircle style={{ width: "3rem", height: "3rem" }} />
               Update Details
-            </button>
-            <button className="modal__btn">
-              <RxCrossCircled style={{ width: "3rem", height: "3rem" }} />
-              Close
             </button>
           </aside>
         </main>
@@ -59,10 +63,28 @@ const UserProfile = (props) => {
 
 export default UserProfile;
 
-export const action = ({ request, params }) => {
+export const action = async ({ request, params }) => {
   const { userId } = params;
-  console.log(userId);
-  const url = "https://localhost:8080/";
+  const url = "http://localhost:8080/user/";
+  const data = await request.formData();
+  const newUser = {
+    username: data.get("username"),
+    email: data.get("email"),
+    password: data.get("password"),
+    confirmPassword: data.get("confirmPassword"),
+    image: data.get("image"),
+  };
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(newUser)) {
+    formData.append(key, value);
+  }
 
-  return null;
+  const response = await fetch(url + userId, {
+    method: "PUT",
+    body: formData,
+  });
+
+  if (!response.ok) throw json({ message: "Could not update user details" });
+
+  return response;
 };
