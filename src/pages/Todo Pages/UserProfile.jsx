@@ -1,17 +1,42 @@
 import "./UserProfile.scss";
 import ProfileInput from "../../components/Todo/ProfileInput";
-import { RxCrossCircled } from "react-icons/rx";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { useFetcher, json } from "react-router-dom";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = (props) => {
   const { user: userData } = useLoaderData();
   const fetcher = useFetcher();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(fetcher.data);
+    if (fetcher?.data?.status === 200) {
+      toast.success("Account details updated", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        onClose: () => navigate("/login"),
+      });
+      toast.info("Please log in again", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        onClose: () => navigate("/login"),
+      });
+    }
+    if (fetcher?.data?.status === 401) {
+      toast.error("Passwords Does not match", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }, [fetcher?.data]);
 
   return (
     <fetcher.Form method="PUT" encType="multipart/form-data">
       <section className="profile">
+        <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
         <h1 className="heading__primary">Edit your profile</h1>
         <main className="profile__details--container">
           <img
@@ -24,12 +49,14 @@ const UserProfile = (props) => {
             name="username"
             type="text"
             placeholder={userData.username}
+            defValue={userData.username}
           />
           <ProfileInput
             label="Email"
             name="email"
             type="email"
             placeholder={userData.email}
+            defValue={userData.email}
           />
           <ProfileInput
             label="Password"
@@ -83,6 +110,8 @@ export const action = async ({ request, params }) => {
     method: "PUT",
     body: formData,
   });
+
+  if (response.status === 401) return response; //passwords doesn't match
 
   if (!response.ok) throw json({ message: "Could not update user details" });
 

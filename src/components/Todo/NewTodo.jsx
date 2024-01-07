@@ -30,7 +30,7 @@ const NewTodo = ({ isEdit, todoData }) => {
             className="newtodo__input"
             type="date"
             name="todo__date"
-            // min={`${currYear}-${currMonth}-${currDay}`}
+            min={`${currYear}-${currMonth}-${currDay}`}
             defaultValue={isEdit ? `${currYear}-${currMonth}-${currDay}` : ``}
           />
         </label>

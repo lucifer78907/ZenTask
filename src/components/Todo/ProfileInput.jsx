@@ -1,6 +1,6 @@
 import "./ProfileInput.scss";
 
-const ProfileInput = ({ label, type, placeholder, name }) => {
+const ProfileInput = ({ label, type, placeholder, name, defValue }) => {
   return (
     <article className="profile__details--field">
       <label className="profile__details--label">{label} :</label>
@@ -9,6 +9,8 @@ const ProfileInput = ({ label, type, placeholder, name }) => {
         type={type}
         name={name}
         placeholder={placeholder}
+        defaultValue={defValue}
+        required
       />
     </article>
   );
