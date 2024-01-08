@@ -23,6 +23,10 @@ const Form = ({ isLogin }) => {
       // Storing token
       const token = fetcher?.data?.token;
       localStorage.setItem("token", token);
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 1); //expires after an hour
+      localStorage.setItem("expiration", expiration.toISOString());
+
       toast.success("Successfully logged in", {
         position: toast.POSITION.TOP_RIGHT,
         onClose: () => navigate(`/homepage/${fetcher.data.userId}`),
