@@ -37,7 +37,9 @@ const UserProfile = (props) => {
     <fetcher.Form method="PUT" encType="multipart/form-data">
       <section className="profile">
         <ToastContainer style={{ fontSize: "1.7rem", width: "max-content" }} />
-        <h1 className="heading__primary">Edit your profile</h1>
+        <h1 className="heading__primary heading__primary--edit">
+          Edit your profile
+        </h1>
         <main className="profile__details--container">
           <img
             className="profile__details--img"
