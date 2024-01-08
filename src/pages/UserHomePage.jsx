@@ -3,6 +3,7 @@ import "./UserHomePage.scss";
 import handImg from "../assets/3d/hand.png";
 import HomeCards from "../components/HomeCards";
 import { useLoaderData, json } from "react-router";
+import { getAuthToken } from "../util/auth";
 
 const UserHomePage = () => {
   const { user } = useLoaderData();
@@ -26,7 +27,12 @@ const UserHomePage = () => {
 
 export const loader = async ({ request, params }) => {
   const { userId } = params;
-  const response = await fetch("http://localhost:8080/user/" + userId);
+  console.log(getAuthToken());
+  const response = await fetch("http://localhost:8080/user/" + userId, {
+    headers: {
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
 
   if (!response.ok)
     throw json({ message: "Server error! Could not process your request" });

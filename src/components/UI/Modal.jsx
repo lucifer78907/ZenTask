@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import { useFetcher, json, redirect, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAuthToken } from "../../util/auth";
 
 const Modal = ({ children, title, closeHandler, edit, todoData }) => {
   const { userId } = useParams();
@@ -105,6 +106,9 @@ export const newTodoAction = async ({ request, params }) => {
       `http://localhost:8080/user/deleteTodo/${id}`,
       {
         method: method,
+        headers: {
+          Authorization: "Bearer " + getAuthToken(),
+        },
       }
     );
 
@@ -135,6 +139,7 @@ export const newTodoAction = async ({ request, params }) => {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
     },
     body: JSON.stringify(todoData),
   });

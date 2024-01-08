@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Form = ({ isLogin }) => {
   const fetcher = useFetcher();
   const navigate = useNavigate();
+  console.log(fetcher.data);
 
   useEffect(() => {
     if (fetcher?.data?.status === 201) {
@@ -19,6 +20,9 @@ const Form = ({ isLogin }) => {
         onClose: () => navigate("/login"),
       });
     } else if (fetcher?.data?.status === 200) {
+      // Storing token
+      const token = fetcher?.data?.token;
+      localStorage.setItem("token", token);
       toast.success("Successfully logged in", {
         position: toast.POSITION.TOP_RIGHT,
         onClose: () => navigate(`/homepage/${fetcher.data.userId}`),

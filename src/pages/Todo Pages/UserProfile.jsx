@@ -6,6 +6,7 @@ import { useFetcher, json } from "react-router-dom";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAuthToken } from "../../util/auth";
 
 const UserProfile = (props) => {
   const { user: userData } = useLoaderData();
@@ -110,6 +111,9 @@ export const action = async ({ request, params }) => {
 
   const response = await fetch(url + userId, {
     method: "PUT",
+    headers: {
+      Authorization: "Bearer " + getAuthToken(),
+    },
     body: formData,
   });
 

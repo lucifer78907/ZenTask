@@ -6,6 +6,7 @@ import { useState } from "react";
 import NewTodo from "../../components/Todo/NewTodo";
 import { useLoaderData, json, useParams } from "react-router";
 import { useFetcher } from "react-router-dom";
+import { getAuthToken } from "../../util/auth";
 
 const checkDateIfPrev = (dueDate) => {
   // this checks if currentdate is a prev date or future date
@@ -151,7 +152,12 @@ const TodoList = (props) => {
 export const loader = async ({ request, params }) => {
   const { userId } = params;
   const response = await fetch(
-    "http://localhost:8080/user/" + userId + "/todos"
+    "http://localhost:8080/user/" + userId + "/todos",
+    {
+      headers: {
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    }
   );
 
   if (!response.ok)

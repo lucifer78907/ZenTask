@@ -1,3 +1,5 @@
+@use "../sass/mixin" as a;
+
 .form {
   &__container {
     margin: 4rem auto;
@@ -12,14 +14,21 @@
     position: relative;
     z-index: 1000;
 
-    @media only screen and (width<1600px) {
-      width: 50%;
-    }
-    @media only screen and (width<1250px) {
+    @media only screen and (width<1400px) {
       width: 60%;
     }
-    @media only screen and (width<650px) {
+
+    @include a.respond(tab-land) {
+      width: 70%;
+    }
+
+    @include a.respond(tab-port) {
       width: 90%;
+    }
+
+    @include a.respond(phone) {
+      padding: 2rem;
+      margin: 2rem auto;
     }
   }
 
@@ -28,14 +37,37 @@
     mix-blend-mode: screen;
     z-index: -1;
 
+    @include a.respond(tab-land) {
+      width: 20rem;
+    }
+
+    @include a.respond(tab-port) {
+      width: 15rem;
+    }
+    @include a.respond(phone) {
+      width: 10rem;
+    }
+
     &--left {
       bottom: 0%;
       left: -30%;
+      @include a.respond(tab-land) {
+        left: -17%;
+      }
+      @include a.respond(tab-port) {
+        left: -8%;
+      }
     }
 
     &--right {
       bottom: 0%;
       right: -30%;
+      @include a.respond(tab-land) {
+        right: -17%;
+      }
+      @include a.respond(tab-port) {
+        right: -8%;
+      }
     }
   }
 
