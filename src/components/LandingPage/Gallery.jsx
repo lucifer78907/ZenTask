@@ -7,6 +7,7 @@ import FeatureTwo from "../../assets/features/22.svg";
 import FeatureThree from "../../assets/features/17.svg";
 import FeatureFour from "../../assets/features/48.svg";
 import { useLayoutEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const galleryRef = useRef();
@@ -109,7 +110,10 @@ const Gallery = () => {
           Still Not Convinced?
         </h1>
         <p className="gallery__para">
-          <span>Sign up</span> to know more
+          <Link to="/signup" className="gallery__link">
+            <span>Sign up</span>
+          </Link>
+          to know more
         </p>
       </aside>
     </section>

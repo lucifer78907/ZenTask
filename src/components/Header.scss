@@ -9,6 +9,24 @@
   @include a.respond(phone) {
     padding: 4rem 3rem;
   }
+
+  &__link {
+    font-size: 2.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: inherit;
+    color: var(--color-secondary-500);
+    padding: 1rem 2rem;
+    background-color: var(--color-bg);
+    box-shadow: 0 0.5rem 1rem rgba(25, 25, 25, 0.15);
+    border-radius: 40px;
+  }
+
+  & aside {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
 }
 
 .app__icon {

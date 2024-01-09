@@ -10,14 +10,23 @@
     font-size: clamp(2rem, 1rem + 1vw, 3rem);
     font-weight: 500;
     color: var(--color-primary-300);
+    display: flex;
+    gap: 2rem;
 
     & span {
       font-weight: 700;
       color: #fee2e2;
       font-size: clamp(2.4rem, 1rem + 1vw, 3.2rem);
       text-transform: uppercase;
-      text-decoration: wavy;
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 11px;
+      color: var(--color-primary-500);
     }
+  }
+
+  &__link {
+    text-decoration: none;
   }
 
   &__img {

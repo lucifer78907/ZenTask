@@ -15,7 +15,7 @@ const RootLayout = () => {
     if (token === "EXPIRED") {
       localStorage.removeItem("token");
       localStorage.removeItem("expiration");
-      navigate("/login");
+      navigate("/");
     }
 
     const tokenDuration = getTokenDuration();
