@@ -8,6 +8,9 @@
   justify-content: space-between;
   @include a.respond(phone) {
     padding: 4rem 3rem;
+    justify-content: center;
+    gap: 2rem;
+    flex-direction: column;
   }
 
   &__link {
@@ -21,12 +24,18 @@
     box-shadow: 0 0.5rem 1rem rgba(25, 25, 25, 0.15);
     border: none;
     border-radius: 40px;
+    @media only screen and (width<400px) {
+      font-size: 2rem;
+    }
   }
 
   & aside {
     display: flex;
     align-items: center;
     gap: 3rem;
+    @media only screen and (width<400px) {
+      gap: 1rem;
+    }
   }
 }
 
