@@ -95,7 +95,7 @@ export default UserProfile;
 
 export const action = async ({ request, params }) => {
   const { userId } = params;
-  const url = "http://localhost:8080/user/";
+  const url = "https://zentask-xru5.onrender.com/user/";
   const data = await request.formData();
   const newUser = {
     username: data.get("username"),

@@ -152,7 +152,7 @@ const TodoList = (props) => {
 export const loader = async ({ request, params }) => {
   const { userId } = params;
   const response = await fetch(
-    "http://localhost:8080/user/" + userId + "/todos",
+    "https://zentask-xru5.onrender.com/user/" + userId + "/todos",
     {
       headers: {
         Authorization: "Bearer " + getAuthToken(),

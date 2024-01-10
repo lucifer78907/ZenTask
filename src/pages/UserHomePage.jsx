@@ -28,11 +28,14 @@ const UserHomePage = () => {
 export const loader = async ({ request, params }) => {
   const { userId } = params;
   console.log(getAuthToken());
-  const response = await fetch("http://localhost:8080/user/" + userId, {
-    headers: {
-      Authorization: "Bearer " + getAuthToken(),
-    },
-  });
+  const response = await fetch(
+    "https://zentask-xru5.onrender.com/user/" + userId,
+    {
+      headers: {
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    }
+  );
 
   if (!response.ok)
     throw json({ message: "Server error! Could not process your request" });

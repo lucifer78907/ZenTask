@@ -103,7 +103,7 @@ export const newTodoAction = async ({ request, params }) => {
   if (method === "DELETE") {
     const id = data.get("id");
     const response = await fetch(
-      `http://localhost:8080/user/deleteTodo/${id}`,
+      `https://zentask-xru5.onrender.com/user/deleteTodo/${id}`,
       {
         method: method,
         headers: {

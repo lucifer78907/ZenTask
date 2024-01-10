@@ -108,7 +108,7 @@ export const loginAction = async ({ request }) => {
     password: data.get("password"),
   };
 
-  const response = await fetch("http://localhost:8080/auth/login", {
+  const response = await fetch("https://zentask-xru5.onrender.com/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -139,13 +139,16 @@ export const signUpAction = async ({ request }) => {
     password: data.get("password"),
   };
 
-  const response = await fetch("http://localhost:8080/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+  const response = await fetch(
+    "https://zentask-xru5.onrender.com/auth/signup",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }
+  );
 
   if (response.status === 409 || response.status === 422) return response;
 
