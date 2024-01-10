@@ -19,6 +19,7 @@ import FutureTodo from "./pages/Todo Pages/FutureTodo";
 import UserProfile, {
   action as editProfileAction,
 } from "./pages/Todo Pages/UserProfile";
+import { action as logoutAction } from "./pages/Logout";
 
 // #OPTIMIZATION - Create a seperate path for updating priority only
 // #OPTIMIZATION - DELETE todo ref from user todo ref array after deleting them
@@ -43,6 +44,10 @@ const App = () => {
           path: "login",
           element: <Login />,
           action: loginAction,
+        },
+        {
+          path: "logout",
+          action: logoutAction,
         },
         {
           path: "homepage",
