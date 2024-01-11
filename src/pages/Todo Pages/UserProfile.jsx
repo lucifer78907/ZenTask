@@ -68,7 +68,7 @@ const UserProfile = (props) => {
             placeholder="*************"
           />
           <ProfileInput
-            label="New Password"
+            label="Confirm Password"
             name="confirmPassword"
             type="password"
             placeholder="*************"

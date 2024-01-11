@@ -22,6 +22,7 @@ const NewTodo = ({ isEdit, todoData }) => {
             name="todo__title"
             placeholder="Do 2 leetcode questions"
             defaultValue={isEdit ? todoData?.title : ""}
+            required
           />
         </label>
         <label className="newtodo__label">
@@ -32,6 +33,7 @@ const NewTodo = ({ isEdit, todoData }) => {
             name="todo__date"
             min={`${currYear}-${currMonth}-${currDay}`}
             defaultValue={isEdit ? `${currYear}-${currMonth}-${currDay}` : ``}
+            required
           />
         </label>
       </header>
@@ -45,6 +47,7 @@ const NewTodo = ({ isEdit, todoData }) => {
           rows={5}
           cols={43}
           defaultValue={isEdit ? todoData?.description : ""}
+          required
         />
       </label>
       <input

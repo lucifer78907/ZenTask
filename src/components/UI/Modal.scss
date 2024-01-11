@@ -66,5 +66,10 @@
     &--blue {
       background-color: var(--color-secondary-500);
     }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 }

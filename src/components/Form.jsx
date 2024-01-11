@@ -11,7 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Form = ({ isLogin }) => {
   const fetcher = useFetcher();
   const navigate = useNavigate();
-  console.log(fetcher.data);
+
+  const state = fetcher.state;
 
   useEffect(() => {
     if (fetcher?.data?.status === 201) {
@@ -29,22 +30,26 @@ const Form = ({ isLogin }) => {
 
       toast.success("Successfully logged in", {
         position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
         onClose: () => navigate(`/homepage/${fetcher.data.userId}`),
       });
     } else if (fetcher?.data?.status === 401) {
       // wrong credentials
       toast.error("Wrong Password!", {
+        autoClose: 2000,
         position: toast.POSITION.TOP_RIGHT,
       });
     } else if (fetcher?.data?.status === 404) {
       // user doesn't exist
       toast.error("User doesn't exists! Signup instead", {
+        autoClose: 2000,
         position: toast.POSITION.TOP_RIGHT,
         onClose: () => navigate("/signup"),
       });
     } else if (fetcher?.data?.status === 409) {
       //duplicate record
       toast.error(`${fetcher.data.message}! Login instead`, {
+        autoClose: 2000,
         position: toast.POSITION.TOP_RIGHT,
         onClose: () => navigate("/login"),
       });
@@ -52,6 +57,7 @@ const Form = ({ isLogin }) => {
       // server validation errors
       fetcher.data?.data.map((error) => {
         toast.warning(error.msg, {
+          autoClose: 2000,
           position: toast.POSITION.TOP_RIGHT,
         });
       });
@@ -90,7 +96,14 @@ const Form = ({ isLogin }) => {
           name="password"
           defaultValue="mySuperSecretp@$$Word"
         />
-        <button className="form__button">SuperCharge</button>
+        <button
+          disabled={state === "submitting"}
+          className={`form__button ${
+            state === "submitting" ? "form__button--disabled" : ""
+          }`}
+        >
+          {state === "submitting" ? "Supercharging" : "Supercharge"}
+        </button>
       </fetcher.Form>
       <img src={leftImage} className="form__image form__image--left" />
       <img src={rightImage} className="form__image form__image--right" />

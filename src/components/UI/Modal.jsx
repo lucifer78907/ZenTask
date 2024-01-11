@@ -12,18 +12,21 @@ const Modal = ({ children, title, closeHandler, edit, todoData }) => {
   const { userId } = useParams();
   const fetcher = useFetcher();
   const modalRef = useRef();
+  const state = fetcher.state;
 
   // close modal as soon as toast goes off
   useEffect(() => {
     if (fetcher?.data?.status === 201) {
       toast.success("Created todo", {
         position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
         onClose: () => closeHandler(),
       });
     }
     if (fetcher?.data?.status === 200) {
       toast.success(`${fetcher?.data?.deleted ? "Deleted" : "Updated"} todo`, {
         position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
         onClose: () => {
           closeHandler();
         },
@@ -76,11 +79,20 @@ const Modal = ({ children, title, closeHandler, edit, todoData }) => {
             <p className="modal__title">{title}</p>
             {children}
             <aside>
-              <button className="modal__btn modal__btn--blue">
+              <button
+                disabled={state === "submitting"}
+                className={`modal__btn modal__btn--blue ${
+                  state === "submitting" ? "modal__btn--disabled" : ""
+                }`}
+              >
                 <FaRegCheckCircle style={{ width: "3rem", height: "3rem" }} />
-                Submit
+                {state === "submitting" ? "Submitting" : "Submit"}
               </button>
-              <button className="modal__btn" onClick={handleAnimation}>
+              <button
+                disabled={state === "submitting"}
+                className="modal__btn"
+                onClick={handleAnimation}
+              >
                 <RxCrossCircled style={{ width: "3rem", height: "3rem" }} />
                 Close
               </button>

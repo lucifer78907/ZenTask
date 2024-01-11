@@ -21,7 +21,7 @@
     color: var(--color-secondary-500);
     padding: 1rem 2rem;
     background-color: var(--color-bg);
-    box-shadow: 0 0.5rem 1rem rgba(25, 25, 25, 0.15);
+    box-shadow: var(--box-shadow-header-btn);
     border: none;
     border-radius: 40px;
     @media only screen and (width<400px) {
