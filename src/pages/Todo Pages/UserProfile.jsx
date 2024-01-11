@@ -44,7 +44,7 @@ const UserProfile = (props) => {
         <main className="profile__details--container">
           <img
             className="profile__details--img"
-            src={`http://localhost:8080/${userData.userImage}`}
+            src={`https://zentask-xru5.onrender.com/${userData.userImage}`}
             alt="User Profile"
           />
           <ProfileInput

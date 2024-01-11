@@ -128,7 +128,7 @@ export const newTodoAction = async ({ request, params }) => {
     percCompleted: data.get("todo__percCompleted"),
   };
 
-  let url = `http://localhost:8080/user/${userId}/`;
+  let url = `https://zentask-xru5.onrender.com/user/${userId}/`;
 
   if (method === "POST") url += "createTodo";
   else if (method === "PATCH") url += "updateTodo";
