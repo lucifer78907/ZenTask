@@ -22,7 +22,14 @@ const ErrorPage = () => {
       </section>
     );
   } else {
-    return <h1 className="error__heading">We hit a wall!</h1>;
+    return (
+      <section className="error">
+        <h1 className="error__heading">We hit a wall!</h1>;
+        <Link to="/" className="header__link error__link">
+          Go back home
+        </Link>
+      </section>
+    );
   }
 };
 

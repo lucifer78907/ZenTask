@@ -2,9 +2,9 @@ import "../../components/Todo.scss";
 import Todo from "../../components/Todo";
 import Modal from "../../components/UI/Modal";
 import { LuListPlus } from "react-icons/lu";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import NewTodo from "../../components/Todo/NewTodo";
-import { useLoaderData, json, useParams } from "react-router";
+import { useLoaderData, json, useParams, Await, defer } from "react-router";
 import { useFetcher } from "react-router-dom";
 import { getAuthToken } from "../../util/auth";
 
@@ -22,13 +22,8 @@ const checkDateIfPrev = (dueDate) => {
 const TodoList = (props) => {
   const fetcher = useFetcher();
   const { userId } = useParams();
-  const { todos: Todos } = useLoaderData();
-  const prevTodos = [];
-  const currTodos = [];
-  for (const item of Todos) {
-    if (checkDateIfPrev(item.dueDate)) prevTodos.push(item);
-    else currTodos.push(item);
-  }
+  const { data } = useLoaderData();
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [todoData, setData] = useState();
   const [isEdit, setIsEdit] = useState(false);
@@ -70,86 +65,107 @@ const TodoList = (props) => {
   };
 
   return (
-    <section className="todo__section">
-      {isModalOpen && (
-        <Modal
-          title="Create new task"
-          edit={false}
-          closeHandler={modalCloseHandler}
-        >
-          <NewTodo isEdit={false} />
-        </Modal>
-      )}
-      {isEdit && (
-        <Modal
-          title="Edit todo"
-          edit={true}
-          todoData={todoData}
-          closeHandler={modalCloseHandler}
-        >
-          <NewTodo isEdit={true} todoData={todoData} />
-        </Modal>
-      )}
-      <h1 className="heading__primary">Goals to finish {props.title}</h1>
-      <main className="todo__container">
-        {/* sorting on basis of priority */}
-        {currTodos
-          .sort((a, b) => a.priority - b.priority)
-          .map((todo) => {
-            return (
-              <Todo
-                setIsEdit={setEditModalHandler}
-                changePriority={changePriorityHandler}
-                todoDelete={todoDeleteOnCompleteProgressHandler}
-                key={todo.id}
-                id={todo.id}
-                title={todo.title}
-                desc={todo.description}
-                priority={todo.priority}
-                progress={todo.progress}
-                dueDate={todo.dueDate}
-              />
-            );
-          })}
-      </main>
-      {!props.isFuture && (
-        <aside className="todo__prev">
-          <p className="todo__prev--title">----- Previous todos -----</p>
-          {prevTodos.length == 0 && (
-            <p className="todo__prev--subtitle">No more prev todo's ;</p>
-          )}
-          {prevTodos
-            .sort((a, b) => a.priority - b.priority)
-            .map((todo) => {
-              return (
-                <Todo
-                  setIsEdit={setEditModalHandler}
-                  changePriority={changePriorityHandler}
-                  todoDelete={todoDeleteOnCompleteProgressHandler}
-                  isPrev={true}
-                  key={todo.id}
-                  id={todo.id}
-                  title={todo.title}
-                  desc={todo.description}
-                  priority={todo.priority}
-                  progress={todo.progress}
-                  dueDate={todo.dueDate}
-                />
-              );
-            })}
-        </aside>
-      )}
+    <Suspense fallback={<p>Loading todos.......</p>}>
+      <Await resolve={data}>
+        {(todos) => {
+          const Todos = todos.todos;
+          const prevTodos = [];
+          const currTodos = [];
+          for (const item of Todos) {
+            if (checkDateIfPrev(item.dueDate)) prevTodos.push(item);
+            else currTodos.push(item);
+          }
+          return (
+            <section className="todo__section">
+              {isModalOpen && (
+                <Modal
+                  title="Create new task"
+                  edit={false}
+                  closeHandler={modalCloseHandler}
+                >
+                  <NewTodo isEdit={false} />
+                </Modal>
+              )}
+              {isEdit && (
+                <Modal
+                  title="Edit todo"
+                  edit={true}
+                  todoData={todoData}
+                  closeHandler={modalCloseHandler}
+                >
+                  <NewTodo isEdit={true} todoData={todoData} />
+                </Modal>
+              )}
+              <h1 className="heading__primary">
+                Goals to finish {props.title}
+              </h1>
+              <main className="todo__container">
+                {/* sorting on basis of priority */}
+                {currTodos
+                  .sort((a, b) => a.priority - b.priority)
+                  .map((todo) => {
+                    return (
+                      <Todo
+                        setIsEdit={setEditModalHandler}
+                        changePriority={changePriorityHandler}
+                        todoDelete={todoDeleteOnCompleteProgressHandler}
+                        key={todo.id}
+                        id={todo.id}
+                        title={todo.title}
+                        desc={todo.description}
+                        priority={todo.priority}
+                        progress={todo.progress}
+                        dueDate={todo.dueDate}
+                      />
+                    );
+                  })}
+              </main>
+              {!props.isFuture && (
+                <aside className="todo__prev">
+                  <p className="todo__prev--title">
+                    ----- Previous todos -----
+                  </p>
+                  {prevTodos.length == 0 && (
+                    <p className="todo__prev--subtitle">
+                      No more prev todo's ;
+                    </p>
+                  )}
+                  {prevTodos
+                    .sort((a, b) => a.priority - b.priority)
+                    .map((todo) => {
+                      return (
+                        <Todo
+                          setIsEdit={setEditModalHandler}
+                          changePriority={changePriorityHandler}
+                          todoDelete={todoDeleteOnCompleteProgressHandler}
+                          isPrev={true}
+                          key={todo.id}
+                          id={todo.id}
+                          title={todo.title}
+                          desc={todo.description}
+                          priority={todo.priority}
+                          progress={todo.progress}
+                          dueDate={todo.dueDate}
+                        />
+                      );
+                    })}
+                </aside>
+              )}
 
-      <footer className="todo__footer--addBtn">
-        <button className="todo__addButton" onClick={modalOpenHandler}>
-          <LuListPlus style={{ height: "5rem", width: "5rem" }} />
-        </button>
-      </footer>
-    </section>
+              <footer className="todo__footer--addBtn">
+                <button className="todo__addButton" onClick={modalOpenHandler}>
+                  <LuListPlus style={{ height: "5rem", width: "5rem" }} />
+                </button>
+              </footer>
+            </section>
+          );
+        }}
+      </Await>
+    </Suspense>
   );
 };
 
-export const loader = async ({ request, params }) => {
+async function loadTodos(params) {
   const { userId } = params;
   const response = await fetch(
     "https://zentask-xru5.onrender.com/user/" + userId + "/todos",
@@ -160,10 +176,12 @@ export const loader = async ({ request, params }) => {
     }
   );
 
-  if (!response.ok)
-    throw json({ message: "Server error! Could not process your request" });
+  const resData = await response.json();
+  return resData;
+}
 
-  return response;
+export const loader = async ({ request, params }) => {
+  return defer({ data: loadTodos(params) });
 };
 
 export default TodoList;
