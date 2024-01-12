@@ -20,6 +20,7 @@ import UserProfile, {
   action as editProfileAction,
 } from "./pages/Todo Pages/UserProfile";
 import { action as logoutAction } from "./pages/Logout";
+import ErrorPage from "./pages/ErrorPage";
 
 // #OPTIMIZATION - Create a seperate path for updating priority only
 // #OPTIMIZATION - DELETE todo ref from user todo ref array after deleting them
@@ -30,6 +31,7 @@ const App = () => {
     {
       path: "/",
       element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
