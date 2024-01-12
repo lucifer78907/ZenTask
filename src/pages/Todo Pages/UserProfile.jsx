@@ -12,6 +12,7 @@ const UserProfile = (props) => {
   const { user: userData } = useLoaderData();
   const fetcher = useFetcher();
   const navigate = useNavigate();
+  const state = fetcher.state;
 
   useEffect(() => {
     console.log(fetcher.data);
@@ -80,9 +81,13 @@ const UserProfile = (props) => {
             placeholder="*************"
           />
           <aside className="profile__details--buttons">
-            <button className="modal__btn modal__btn--blue">
+            <button
+              className={`modal__btn modal__btn--blue ${
+                state === "submitting" ? "modal__btn--disabled" : ""
+              }`}
+            >
               <FaRegCheckCircle style={{ width: "3rem", height: "3rem" }} />
-              Update Details
+              {state === "submitting" ? "Updating" : "Update Details"}
             </button>
           </aside>
         </main>

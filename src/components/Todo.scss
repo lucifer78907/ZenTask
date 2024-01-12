@@ -114,8 +114,7 @@
     background-color: var(--color-primary-200);
     box-shadow: var(--box-shadow-light);
 
-    &::-webkit-slider-thumb,
-    &::-moz-range-thumb {
+    &::-webkit-slider-thumb &::-moz-range-thumb {
       width: 20px;
       height: 20px;
       border: none;

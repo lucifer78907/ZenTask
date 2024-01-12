@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router";
 import Header from "../components/Header";
 import { useEffect } from "react";
 import { getAuthToken, getTokenDuration } from "../util/auth";
+import { ScrollRestoration } from "react-router-dom";
 
 const RootLayout = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const RootLayout = () => {
 
   return (
     <>
+      <ScrollRestoration />
       <Header />
       <Outlet />
     </>
