@@ -4,9 +4,11 @@ import Modal from "../../components/UI/Modal";
 import { LuListPlus } from "react-icons/lu";
 import { Suspense, useState } from "react";
 import NewTodo from "../../components/Todo/NewTodo";
-import { useLoaderData, json, useParams, Await, defer } from "react-router";
+import { useLoaderData, useParams, Await, defer } from "react-router";
 import { useFetcher } from "react-router-dom";
 import { getAuthToken } from "../../util/auth";
+import TodoSkeleton from "../../components/UI/TodoSkeleton";
+import Skeleton from "react-loading-skeleton";
 
 const checkDateIfPrev = (dueDate) => {
   // this checks if currentdate is a prev date or future date
@@ -65,7 +67,7 @@ const TodoList = (props) => {
   };
 
   return (
-    <Suspense fallback={<p>Loading todos.......</p>}>
+    <Suspense fallback={<TodoSkeleton />}>
       <Await resolve={data}>
         {(todos) => {
           const Todos = todos.todos;

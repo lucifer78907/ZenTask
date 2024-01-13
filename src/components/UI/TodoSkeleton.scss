@@ -1,0 +1,39 @@
+.skeleton {
+  &__section {
+    text-align: center;
+    padding: 4rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__main {
+    flex: 0 1 20rem;
+    &--circle {
+      flex: 0 1 5rem;
+    }
+  }
+
+  &__todo {
+    padding: 2rem;
+    border-radius: 11px;
+    box-shadow: var(--box-shadow-light);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    &--title {
+      font-size: 2rem;
+    }
+
+    &--circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: red;
+    }
+  }
+}
