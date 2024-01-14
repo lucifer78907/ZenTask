@@ -8,7 +8,7 @@ const TodoSkeleton = () => {
 
   for (let i = 0; i < total; i++) {
     headers.push(
-      <article className="skeleton__todo">
+      <article className="skeleton__todo" key={i}>
         <Skeleton
           containerClassName="skeleton__main skeleton__main--circle"
           height="5rem"

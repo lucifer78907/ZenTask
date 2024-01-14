@@ -8,7 +8,9 @@ import { useLoaderData, useParams, Await, defer } from "react-router";
 import { useFetcher } from "react-router-dom";
 import { getAuthToken } from "../../util/auth";
 import TodoSkeleton from "../../components/UI/TodoSkeleton";
-import Skeleton from "react-loading-skeleton";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DeleteTodo from "../../components/UI/DeleteTodo";
 
 const checkDateIfPrev = (dueDate) => {
   // this checks if currentdate is a prev date or future date
@@ -60,10 +62,28 @@ const TodoList = (props) => {
   };
 
   const todoDeleteOnCompleteProgressHandler = (id) => {
-    fetcher.submit(
-      { id: id },
-      { method: "DELETE", action: `/homepage/${userId}/todos` }
-    );
+    let deleteFlag = true;
+    const handleTodoHandler = () => {
+      deleteFlag = false;
+    };
+
+    toast.error(<DeleteTodo cancelTodo={handleTodoHandler} />, {
+      toastId: "delete-toast",
+      position: "top-right",
+      autoClose: 3000,
+      onClose: () => {
+        if (deleteFlag) {
+          fetcher.submit(
+            { id: id },
+            { method: "DELETE", action: `/homepage/${userId}/todos` }
+          );
+          toast.info("Deleted todo", {
+            position: "top-right",
+            autoClose: 1000,
+          });
+        }
+      },
+    });
   };
 
   return (
@@ -79,6 +99,9 @@ const TodoList = (props) => {
           }
           return (
             <section className="todo__section">
+              <ToastContainer
+                style={{ fontSize: "1.7rem", width: "max-content" }}
+              />
               {isModalOpen && (
                 <Modal
                   title="Create new task"
@@ -153,7 +176,6 @@ const TodoList = (props) => {
                     })}
                 </aside>
               )}
-
               <footer className="todo__footer--addBtn">
                 <button className="todo__addButton" onClick={modalOpenHandler}>
                   <LuListPlus style={{ height: "5rem", width: "5rem" }} />

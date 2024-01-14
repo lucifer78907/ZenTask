@@ -1,5 +1,6 @@
 import TodoList from "./TodoList";
 import { getAuthToken } from "../../util/auth";
+import { useRouteLoaderData, defer } from "react-router";
 
 const FutureTodo = () => {
   return <TodoList title="ultimately" isFuture={true} />;
@@ -7,7 +8,7 @@ const FutureTodo = () => {
 
 export default FutureTodo;
 
-export const loader = async ({ request, params }) => {
+async function loadTodos(params) {
   const { userId } = params;
   const response = await fetch(
     "https://zentask-xru5.onrender.com/user/" + userId + "/futureTodos",
@@ -18,8 +19,10 @@ export const loader = async ({ request, params }) => {
     }
   );
 
-  if (!response.ok)
-    throw json({ message: "Server error! Could not process your request" });
+  const resData = await response.json();
+  return resData;
+}
 
-  return response;
+export const loader = async ({ request, params }) => {
+  return defer({ data: loadTodos(params) });
 };

@@ -73,9 +73,6 @@ const Modal = ({ children, title, closeHandler, edit, todoData }) => {
           action={`/homepage/${userId}/todos`}
         >
           <main className="modal__main">
-            <ToastContainer
-              style={{ fontSize: "1.7rem", width: "max-content" }}
-            />
             <p className="modal__title">{title}</p>
             {children}
             <aside>

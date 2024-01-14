@@ -131,6 +131,7 @@ const Todo = (props) => {
     const currValue = +e.target.value;
     if (currValue === 100) {
       //todo is completed
+      // Add a deletion Confirmation
       props.todoDelete(props.id);
     }
   };
