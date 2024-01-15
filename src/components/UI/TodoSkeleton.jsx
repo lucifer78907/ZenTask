@@ -1,8 +1,11 @@
 import "./TodoSkeleton.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import uiContext from "../../context/ui-context";
+import { useContext } from "react";
 
 const TodoSkeleton = () => {
+  const { themeColor } = useContext(uiContext);
   const total = 3;
   const headers = [];
 
@@ -14,8 +17,15 @@ const TodoSkeleton = () => {
           height="5rem"
           borderRadius="50%"
           inline={true}
+          baseColor={`${themeColor === "dark" ? "#525252" : ""}`}
+          highlightColor={`${themeColor === "dark" ? "#a3a3a3" : ""}`}
         />
-        <Skeleton containerClassName="skeleton__main" height="2rem" />
+        <Skeleton
+          containerClassName="skeleton__main"
+          height="2rem"
+          baseColor={`${themeColor === "dark" ? "#525252" : ""}`}
+          highlightColor={`${themeColor === "dark" ? "#a3a3a3" : ""}`}
+        />
       </article>
     );
   }

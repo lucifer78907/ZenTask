@@ -43,9 +43,9 @@ const Todo = (props) => {
     if (isOpen) {
       //if open then close
       isOpen = false;
-      gsap.to(todoRef.current, { backgroundColor: "#fafafa", gap: 0 });
+      gsap.to(todoRef.current, { backgroundColor: "var(--color-bg)", gap: 0 });
       gsap.context(() => {
-        gsap.to(".todo__title", { color: "#171717" });
+        gsap.to(".todo__title", { color: "var(--color-text)" });
         gsap.to(".todo__footer", { height: 0, autoAlpha: 0 });
         gsap.to(".todo__priority", {
           scale: 1,
