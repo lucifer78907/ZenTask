@@ -1,6 +1,9 @@
 @use "../sass/mixin" as a;
 
 .todo {
+
+
+
   &__prev {
     display: flex;
     flex-direction: column;
@@ -179,17 +182,18 @@
     line-height: 1.2;
     gap: 4rem;
 
-    & p {
+    @include a.respond(tab-port){
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &__content {
       margin-right: auto;
       @include a.respond(phone) {
         margin-right: 0;
       }
     }
 
-    @include a.respond(phone) {
-      flex-direction: column;
-      gap: 2rem;
-    }
   }
 
   &__desc {
@@ -233,6 +237,22 @@
     background-color: white;
     border: none;
     border-radius: 11px;
+  }
+
+
+  &__recurr{
+    font-size: 2rem;
+    font-weight: 500;
+    background-color: var(--color-secondary-200);
+    color: var(--color-secondary-600);
+    padding: 1rem;
+    border-radius: 11px;
+    margin-left: auto;
+    margin-right: 0;
+
+    @include a.respond(tab-port){
+      margin: 0;
+    }
   }
 }
 

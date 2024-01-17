@@ -161,7 +161,8 @@ const Todo = (props) => {
         >
           &nbsp;
         </aside>
-        <p>{props.title}</p>
+        <p className="todo__content">{props.title}</p>
+        <p className="todo__recurr">Recurring</p>
         <label
           className="todo__slider--label"
           ref={sliderRef}
