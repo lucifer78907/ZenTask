@@ -4,6 +4,7 @@ import handImg from "../assets/3d/hand.png";
 import HomeCards from "../components/HomeCards";
 import { useLoaderData, json } from "react-router";
 import { getAuthToken } from "../util/auth";
+import { backendURL } from "../util/variables";
 
 const UserHomePage = () => {
   const { user } = useLoaderData();
@@ -28,14 +29,11 @@ const UserHomePage = () => {
 export const loader = async ({ request, params }) => {
   const { userId } = params;
   console.log(getAuthToken());
-  const response = await fetch(
-    "https://zentask-xru5.onrender.com/user/" + userId,
-    {
-      headers: {
-        Authorization: "Bearer " + getAuthToken(),
-      },
-    }
-  );
+  const response = await fetch(backendURL + "/user/" + userId, {
+    headers: {
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
 
   if (!response.ok)
     throw json({ message: "Server error! Could not process your request" });

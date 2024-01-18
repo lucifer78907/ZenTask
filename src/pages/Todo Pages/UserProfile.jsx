@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuthToken } from "../../util/auth";
+import { backendURL } from "../../util/variables";
 
 const UserProfile = (props) => {
   const { user: userData } = useLoaderData();
@@ -45,7 +46,7 @@ const UserProfile = (props) => {
         <main className="profile__details--container">
           <img
             className="profile__details--img"
-            src={`https://zentask-xru5.onrender.com/${userData.userImage}`}
+            src={`${backendURL}/${userData.userImage}`}
             alt="User Profile"
           />
           <ProfileInput
@@ -100,7 +101,7 @@ export default UserProfile;
 
 export const action = async ({ request, params }) => {
   const { userId } = params;
-  const url = "https://zentask-xru5.onrender.com/user/";
+  const url = backendURL + "/user/";
   const data = await request.formData();
   const newUser = {
     username: data.get("username"),

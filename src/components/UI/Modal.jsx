@@ -7,6 +7,7 @@ import { useFetcher, json, redirect, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuthToken } from "../../util/auth";
+import { backendURL } from "../../util/variables";
 
 const Modal = ({ children, title, closeHandler, edit, todoData }) => {
   const { userId } = useParams();
@@ -111,15 +112,12 @@ export const newTodoAction = async ({ request, params }) => {
 
   if (method === "DELETE") {
     const id = data.get("id");
-    const response = await fetch(
-      `https://zentask-xru5.onrender.com/user/deleteTodo/${id}`,
-      {
-        method: method,
-        headers: {
-          Authorization: "Bearer " + getAuthToken(),
-        },
-      }
-    );
+    const response = await fetch(`${backendURL}/user/deleteTodo/${id}`, {
+      method: method,
+      headers: {
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    });
 
     console.log(response);
 
@@ -135,9 +133,12 @@ export const newTodoAction = async ({ request, params }) => {
     date: data.get("todo__date"),
     priority: +data.get("todo__priority"),
     percCompleted: data.get("todo__percCompleted"),
+    isRecurr: data.get("todo__checkbox") === "on" ? true : false,
   };
 
-  let url = `https://zentask-xru5.onrender.com/user/${userId}/`;
+  console.log(todoData);
+
+  let url = `${backendURL}/user/${userId}/`;
 
   if (method === "POST") url += "createTodo";
   else if (method === "PATCH") url += "updateTodo";

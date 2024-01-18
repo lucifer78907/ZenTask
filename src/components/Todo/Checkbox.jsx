@@ -14,7 +14,7 @@ const CheckBox = () => {
       <input
         className="newtodo__checkbox"
         type="checkbox"
-        name="isChecked"
+        name="todo__checkbox"
         id="check"
         onClick={checkHandler}
       />

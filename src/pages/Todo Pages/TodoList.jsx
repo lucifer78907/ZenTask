@@ -11,6 +11,7 @@ import TodoSkeleton from "../../components/UI/TodoSkeleton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeleteTodo from "../../components/UI/DeleteTodo";
+import { backendURL } from "../../util/variables";
 
 const checkDateIfPrev = (dueDate) => {
   // this checks if currentdate is a prev date or future date
@@ -191,14 +192,11 @@ const TodoList = (props) => {
 
 async function loadTodos(params) {
   const { userId } = params;
-  const response = await fetch(
-    "https://zentask-xru5.onrender.com/user/" + userId + "/todos",
-    {
-      headers: {
-        Authorization: "Bearer " + getAuthToken(),
-      },
-    }
-  );
+  const response = await fetch(backendURL + "/user/" + userId + "/todos", {
+    headers: {
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
 
   const resData = await response.json();
   return resData;
