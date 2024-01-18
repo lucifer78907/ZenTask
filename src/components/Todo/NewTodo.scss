@@ -7,6 +7,30 @@
   gap: 3rem;
   padding: 2rem;
 
+  &__checkbox {
+    display: none;
+  }
+
+  &__checkmark {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary-300);
+    box-shadow: var(--box-shadow-light);
+    border-radius: 11px;
+    position: relative;
+    user-select: none;
+
+    &::after {
+      content: attr(data-checked);
+      position: absolute;
+      color: var(--color-primary-600);
+      font-size: 4rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   @include a.respond(tab-port) {
     align-items: center;
   }
@@ -27,6 +51,20 @@
     }
   }
 
+  &__footer {
+    align-self: stretch;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    @include a.respond(tab-port) {
+      justify-content: space-between;
+    }
+    @include a.respond(phone) {
+      flex-direction: column;
+      gap: 4rem;
+    }
+  }
+
   &__label {
     font-size: clamp(2rem, 1rem + 1vw, 3.2rem);
     font-weight: 500;
@@ -42,6 +80,13 @@
     }
     @include a.respond(phone) {
       align-items: stretch;
+    }
+
+    &--footer {
+      @include a.respond(tab-port) {
+        flex-direction: row;
+        align-items: center;
+      }
     }
   }
 

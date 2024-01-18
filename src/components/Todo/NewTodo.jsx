@@ -1,5 +1,6 @@
 import "./NewTodo.scss";
 import PriorityPicker from "./PriorityPicker";
+import CheckBox from "./Checkbox";
 
 const NewTodo = ({ isEdit, todoData }) => {
   const date = new Date();
@@ -9,7 +10,6 @@ const NewTodo = ({ isEdit, todoData }) => {
   if (currMonth < 10) currMonth = "0" + currMonth;
   let currDay = date.getDate();
   if (currDay < 10) currDay = "0" + currDay;
-  console.log(currYear, currMonth, currDay);
 
   return (
     <section className="newtodo">
@@ -50,6 +50,10 @@ const NewTodo = ({ isEdit, todoData }) => {
           required
         />
       </label>
+      <footer className="newtodo__footer">
+        <PriorityPicker priorityData={isEdit ? todoData?.priority : null} />
+        <CheckBox />
+      </footer>
       <input
         hidden
         type="text"
@@ -57,7 +61,6 @@ const NewTodo = ({ isEdit, todoData }) => {
         value={todoData?.id}
         onChange={(e) => console.log("")}
       />
-      <PriorityPicker priorityData={isEdit ? todoData?.priority : null} />
     </section>
   );
 };
