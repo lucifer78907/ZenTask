@@ -142,6 +142,7 @@ const TodoList = (props) => {
                         priority={todo.priority}
                         progress={todo.progress}
                         dueDate={todo.dueDate}
+                        recurrStatus={todo.recurrStatus}
                       />
                     );
                   })}

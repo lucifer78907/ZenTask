@@ -4,10 +4,18 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import colorMap from "../data/PriorityColorMap";
 import { colorArr } from "../data/PriorityColorMap";
 
+const checkTodoRecurr = (dueDate) => {
+  dueDate.setDate(dueDate.getDate() + 1);
+  dueDate.setHours(0, 0, 0);
+  const currDate = new Date();
+  return currDate.getTime() < dueDate.getTime(); //return true if the todo is still recurring
+};
+
 const Todo = (props) => {
   const todoRef = useRef();
   const sliderRef = useRef();
   const [priority, setPriority] = useState(props.priority);
+  // Dates related
   const monthMap = {
     1: "Jan",
     2: "Feb",
@@ -23,9 +31,13 @@ const Todo = (props) => {
     12: "Dec",
   };
   const date = new Date(props.dueDate);
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const day = date.getDate();
+  const [day, month, year] = [
+    date.getDate(),
+    date.getMonth() + 1,
+    date.getFullYear(),
+  ];
+  // Is todo recurring
+  const isRecurringTodo = props.recurrStatus.isRecurring;
   let isOpen = false;
 
   useLayoutEffect(() => {
@@ -162,7 +174,9 @@ const Todo = (props) => {
           &nbsp;
         </aside>
         <p className="todo__content">{props.title}</p>
-        {/* <p className="todo__recurr">Recurring</p> */}
+        {isRecurringTodo && checkTodoRecurr(date) && (
+          <p className="todo__recurr">Recurring</p>
+        )}
         <label
           className="todo__slider--label"
           ref={sliderRef}

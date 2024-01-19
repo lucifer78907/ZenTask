@@ -4,7 +4,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { gsap } from "gsap/gsap-core";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useFetcher, json, redirect, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuthToken } from "../../util/auth";
 import { backendURL } from "../../util/variables";
