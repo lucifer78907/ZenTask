@@ -52,7 +52,7 @@ const NewTodo = ({ isEdit, todoData }) => {
       </label>
       <footer className="newtodo__footer">
         <PriorityPicker priorityData={isEdit ? todoData?.priority : null} />
-        <CheckBox />
+        {!isEdit && <CheckBox />}
       </footer>
       <input
         hidden

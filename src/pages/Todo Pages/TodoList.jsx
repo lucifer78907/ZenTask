@@ -62,7 +62,7 @@ const TodoList = (props) => {
     );
   };
 
-  const todoDeleteOnCompleteProgressHandler = (id) => {
+  const todoDeleteOnCompleteProgressHandler = (id, isRecurr) => {
     let deleteFlag = true;
     const handleTodoHandler = () => {
       deleteFlag = false;
@@ -75,7 +75,7 @@ const TodoList = (props) => {
       onClose: () => {
         if (deleteFlag) {
           fetcher.submit(
-            { id: id },
+            { id: id, isRecurring: isRecurr },
             { method: "DELETE", action: `/homepage/${userId}/todos` }
           );
           toast.info("Deleted todo", {

@@ -37,7 +37,7 @@ const Todo = (props) => {
     date.getFullYear(),
   ];
   // Is todo recurring
-  const isRecurringTodo = props.recurrStatus.isRecurring;
+  const isRecurringTodo = props.recurrStatus?.isRecurring;
   let isOpen = false;
 
   useLayoutEffect(() => {
@@ -125,6 +125,7 @@ const Todo = (props) => {
       priority: +(selectedPriority + 1),
       percCompleted: props.progress,
       dueDate: props.dueDate,
+      isRecurr: isRecurringTodo,
     });
   };
 
@@ -136,6 +137,7 @@ const Todo = (props) => {
       priority: props.priority,
       percCompleted: props.progress,
       dueDate: props.dueDate,
+      isRecurr: isRecurringTodo,
     });
   };
 
@@ -144,7 +146,8 @@ const Todo = (props) => {
     if (currValue === 100) {
       //todo is completed
       // Add a deletion Confirmation
-      props.todoDelete(props.id);
+      console.log(isRecurringTodo);
+      props.todoDelete(props.id, isRecurringTodo);
     }
   };
 

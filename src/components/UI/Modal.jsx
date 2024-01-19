@@ -53,7 +53,7 @@ const Modal = ({ children, title, closeHandler, edit, todoData }) => {
 
   const deleteTodo = () => {
     fetcher.submit(
-      { id: todoData.id },
+      { id: todoData.id, isRecurring: todoData.isRecurr },
       { method: "DELETE", action: `/homepage/${userId}/todos` }
     );
   };
@@ -107,24 +107,37 @@ export default Modal;
 export const newTodoAction = async ({ request, params }) => {
   const method = request.method;
   const { userId } = params;
+  let typeTodo = window.location.href.split("/").at(-1);
 
   const data = await request.formData();
 
+  const temp = data.get("isRecurring");
+
+  let isRecurr;
+
+  if (temp === "false") isRecurr = false;
+  else isRecurr = true;
+
+  if (isRecurr) typeTodo = "recurringTodo";
+
   if (method === "DELETE") {
     const id = data.get("id");
-    const response = await fetch(`${backendURL}/user/deleteTodo/${id}`, {
-      method: method,
-      headers: {
-        Authorization: "Bearer " + getAuthToken(),
-      },
-    });
-
-    console.log(response);
+    const response = await fetch(
+      `${backendURL}/user/${userId}/deleteTodo/${id}/${typeTodo}`,
+      {
+        method: method,
+        headers: {
+          Authorization: "Bearer " + getAuthToken(),
+        },
+      }
+    );
 
     if (!response.ok) throw json({ message: "Could not delete a todo" });
 
     return response;
   }
+
+  let url = `${backendURL}/user/${userId}/`;
 
   const todoData = {
     id: data.get("todo__id"),
@@ -136,14 +149,8 @@ export const newTodoAction = async ({ request, params }) => {
     isRecurr: data.get("todo__checkbox") === "on" ? true : false,
   };
 
-  console.log(todoData);
-
-  let url = `${backendURL}/user/${userId}/`;
-
   if (method === "POST") url += "createTodo";
   else if (method === "PATCH") url += "updateTodo";
-
-  console.log(todoData);
 
   const response = await fetch(url, {
     method: method,
