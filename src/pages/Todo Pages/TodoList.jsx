@@ -7,7 +7,7 @@ import NewTodo from "../../components/Todo/NewTodo";
 import { useLoaderData, useParams, Await, defer } from "react-router";
 import { useFetcher } from "react-router-dom";
 import { getAuthToken } from "../../util/auth";
-import TodoSkeleton from "../../components/UI/TodoSkeleton";
+import TodoSkeleton from "../../components/UI/Skeletons/TodoSkeleton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeleteTodo from "../../components/UI/DeleteTodo";
